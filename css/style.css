@@ -1,0 +1,461 @@
+/* =====================================================================
+   TIGER Automotocentre — dizayn (mobile-first)
+   ===================================================================== */
+:root {
+  --bg: #0A0A0A;
+  --bg-2: #121212;
+  --bg-3: #1a1a1a;
+  --line: rgba(255,255,255,.08);
+  --red: #E10600;
+  --red-2: #ff2a1f;
+  --blue: #1E5BFF;
+  --text: #fff;
+  --muted: #9a9a9a;
+  --green: #18c964;
+  --yellow: #ffc400;
+  --radius: 14px;
+  --head: "Bebas Neue", "Rajdhani", Impact, sans-serif;
+  --sub: "Rajdhani", "Inter", sans-serif;
+  --body: "Inter", system-ui, sans-serif;
+  --carbon:
+    repeating-linear-gradient(45deg, rgba(255,255,255,.025) 0 2px, transparent 2px 6px),
+    repeating-linear-gradient(-45deg, rgba(0,0,0,.35) 0 2px, transparent 2px 6px);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
+body { background: var(--bg); color: var(--text); font: 400 15px/1.6 var(--body); overflow-x: hidden; }
+body.no-scroll { overflow: hidden; }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: 0; }
+.container { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 16px; }
+.ico { width: 20px; height: 20px; flex: none; fill: currentColor; }
+
+/* ---------- Tipografiya ---------- */
+.kicker {
+  font: 700 13px/1 var(--sub); letter-spacing: .25em; text-transform: uppercase; color: var(--red);
+  display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+}
+.kicker::before { content: ""; width: 28px; height: 3px; background: var(--red); transform: skewX(-30deg); }
+.section__title {
+  font: 400 clamp(40px, 9vw, 72px)/.95 var(--head); letter-spacing: .02em; font-style: italic;
+  text-transform: uppercase; margin-bottom: 28px;
+}
+
+/* ---------- Tugmalar ---------- */
+.btn {
+  --skew: -12deg;
+  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 15px 28px; font: 700 16px/1 var(--sub); letter-spacing: .08em; text-transform: uppercase;
+  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+  transition: transform .25s, box-shadow .25s, background .25s, color .25s;
+  white-space: nowrap;
+}
+.btn--red { background: var(--red); color: #fff; box-shadow: 0 0 0 rgba(225,6,0,0); }
+.btn--red:hover { background: var(--red-2); transform: translateY(-2px); filter: drop-shadow(0 8px 22px rgba(225,6,0,.55)); }
+.btn--blue { background: var(--blue); }
+.btn--blue:hover { transform: translateY(-2px); filter: drop-shadow(0 8px 22px rgba(30,91,255,.5)); }
+.btn--outline { color: #fff; background: rgba(255,255,255,.04); box-shadow: inset 0 0 0 2px rgba(255,255,255,.85); clip-path: none; transform: skewX(var(--skew)); }
+.btn--outline > * { transform: skewX(calc(var(--skew) * -1)); }
+.btn--outline:hover { background: #fff; color: #000; }
+.btn--ghost { background: rgba(255,255,255,.06); }
+.btn--ghost:hover { background: var(--red); }
+.btn--sm { padding: 10px 16px; font-size: 14px; }
+.btn--block { width: 100%; }
+.link-btn { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; font-size: 14px; }
+.link-btn:hover { color: #fff; }
+.round-btn {
+  width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line); font-size: 26px; line-height: 1;
+  background: var(--bg-3); transition: background .2s, border-color .2s;
+}
+.round-btn:hover { background: var(--red); border-color: var(--red); }
+
+/* ---------- Header ---------- */
+.header { position: fixed; inset: 0 0 auto; z-index: 50; transition: background .3s, box-shadow .3s; }
+.header.is-scrolled, .header.is-solid {
+  background: rgba(10,10,10,.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 1px 0 var(--line);
+}
+.header__inner { height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo__mark svg { width: 38px; height: 38px; filter: drop-shadow(0 0 10px rgba(30,91,255,.5)); }
+.logo__text { font: 400 28px/.85 var(--head); letter-spacing: .06em; font-style: italic; display: flex; flex-direction: column; }
+.logo__text small { font: 700 9px/1.4 var(--sub); letter-spacing: .32em; color: var(--red); font-style: normal; }
+.header__right { display: flex; align-items: center; gap: 12px; }
+.lang { display: flex; border: 1px solid var(--line); border-radius: 30px; padding: 3px; }
+.lang button { padding: 5px 10px; border-radius: 30px; font: 700 12px/1 var(--sub); letter-spacing: .08em; color: var(--muted); }
+.lang button.active { background: var(--red); color: #fff; }
+
+.burger { width: 40px; height: 40px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; }
+.burger span { width: 22px; height: 2px; background: #fff; transition: transform .3s, opacity .3s; }
+.burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger.open span:nth-child(2) { opacity: 0; }
+.burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.nav {
+  position: fixed; inset: 64px 0 0; background: rgba(10,10,10,.97); backdrop-filter: blur(10px);
+  display: flex; flex-direction: column; padding: 32px 24px; gap: 6px;
+  transform: translateX(100%); transition: transform .4s cubic-bezier(.7,0,.2,1);
+}
+.nav.open { transform: none; }
+.nav a { font: 400 40px/1.3 var(--head); font-style: italic; letter-spacing: .03em; border-bottom: 1px solid var(--line); padding: 8px 0; }
+.nav a:hover { color: var(--red); }
+
+/* ---------- Reveal animatsiya ---------- */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+.reveal.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { animation: none !important; }
+}
+
+/* ---------- 1. HERO ---------- */
+.hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; padding: 96px 0 72px; isolation: isolate; }
+.hero__bg { position: absolute; inset: 0; z-index: -2; background: var(--carbon), radial-gradient(120% 80% at 70% 30%, #1d1d1d 0%, #0A0A0A 60%); }
+.hero__glow {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(50% 40% at 70% 45%, rgba(225,6,0,.35), transparent 70%),
+    radial-gradient(35% 30% at 20% 20%, rgba(30,91,255,.22), transparent 70%);
+  animation: pulse 6s ease-in-out infinite alternate;
+}
+@keyframes pulse { to { opacity: .6; transform: scale(1.05); } }
+.hero__speed {
+  position: absolute; inset: 0; opacity: .5;
+  background: repeating-linear-gradient(-12deg, transparent 0 46px, rgba(255,255,255,.05) 46px 47px, transparent 47px 120px);
+  animation: speed 2.5s linear infinite;
+}
+@keyframes speed { to { background-position: -400px 0; } }
+.hero__floor { position: absolute; left: 0; right: 0; bottom: 0; height: 38%; background: linear-gradient(to bottom, transparent, rgba(0,0,0,.9)), linear-gradient(to bottom, #151515, #050505); transform-origin: bottom; }
+.hero__neon {
+  position: absolute; left: -10%; right: -10%; top: 58%; height: 4px; background: var(--red);
+  box-shadow: 0 0 12px var(--red), 0 0 40px var(--red), 0 0 90px rgba(225,6,0,.8); transform: rotate(-4deg);
+}
+.hero__neon::after { content: ""; position: absolute; left: 30%; right: 0; top: 26px; height: 2px; background: var(--blue); box-shadow: 0 0 12px var(--blue), 0 0 40px var(--blue); }
+
+.hero__media { position: absolute; inset: 0; z-index: -1; display: flex; align-items: center; justify-content: center; }
+.hero__media video { width: 100%; height: 100%; object-fit: cover; opacity: .55; }
+.hero__bike { width: min(115vw, 900px); margin-top: -18vh; animation: bikeIn 1.4s cubic-bezier(.2,.7,.2,1) both; }
+.hero__bike .bike-art { width: 100%; height: auto; filter: drop-shadow(0 30px 40px rgba(0,0,0,.8)) drop-shadow(0 0 60px rgba(225,6,0,.25)); }
+.bike-art--reflect { transform: scaleY(-1); margin-top: -12%; opacity: .18; -webkit-mask-image: linear-gradient(to top, #000, transparent 55%); mask-image: linear-gradient(to top, #000, transparent 55%); filter: blur(2px) !important; }
+@keyframes bikeIn { from { opacity: 0; transform: translateX(25%); } }
+
+.hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, var(--bg) 2%, rgba(10,10,10,.55) 45%, transparent 75%); }
+.hero__content { position: relative; }
+.hero__title { font: 400 clamp(46px, 13vw, 116px)/.9 var(--head); font-style: italic; text-transform: uppercase; letter-spacing: .01em; margin-bottom: 16px; text-shadow: 0 6px 40px rgba(0,0,0,.6); }
+.hero__title em { display: block; font-style: italic; color: transparent; -webkit-text-stroke: 1.5px #fff; }
+.hero__sub { font: 600 clamp(16px, 4vw, 21px)/1.4 var(--sub); letter-spacing: .06em; color: #d6d6d6; margin-bottom: 28px; }
+.hero__cta { display: flex; flex-direction: column; gap: 14px; }
+.hero__scroll { display: none; }
+
+/* ---------- 2. AFZALLIKLAR ---------- */
+.adv { position: relative; background: var(--red); clip-path: polygon(0 18px, 100% 0, 100% calc(100% - 18px), 0 100%); margin-top: -10px; padding: 34px 0; }
+.adv::before { content: ""; position: absolute; inset: 0; background: var(--carbon); opacity: .6; }
+.adv__grid { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 20px 14px; }
+.adv__item { display: flex; align-items: center; gap: 12px; }
+.adv__ico { width: 40px; height: 40px; flex: none; fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.adv__item b { display: block; font: 400 22px/1 var(--head); letter-spacing: .04em; font-style: italic; text-transform: uppercase; }
+.adv__item span { font-size: 12.5px; line-height: 1.3; opacity: .9; display: block; }
+
+/* ---------- Bo'limlar ---------- */
+.section { padding: 72px 0; position: relative; }
+
+/* ---------- 3. MOTOTSIKL TURLARI ---------- */
+.types__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.type-tile {
+  position: relative; display: flex; flex-direction: column; overflow: hidden; border-radius: var(--radius);
+  background: radial-gradient(80% 70% at 50% 40%, color-mix(in srgb, var(--c) 30%, transparent), transparent 70%), var(--bg-2);
+  border: 1px solid var(--line); transition: transform .35s, border-color .35s;
+}
+.type-tile:hover { transform: translateY(-5px); border-color: var(--c); }
+.type-tile__art { aspect-ratio: 16 / 10; display: flex; align-items: center; justify-content: center; padding: 8% 6% 0; }
+.type-tile__art .bike-art, .type-tile__art img { width: 100%; height: auto; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+.type-tile:hover .type-tile__art .bike-art, .type-tile:hover .type-tile__art img { transform: scale(1.07) translateX(3%); }
+.type-tile__body { padding: 6px 16px 16px; }
+.type-tile h3 { font: 400 clamp(28px, 7vw, 44px)/1 var(--head); font-style: italic; text-transform: uppercase; letter-spacing: .02em; }
+.type-tile__body span { color: var(--muted); font-size: 13px; }
+.type-tile__arrow { position: absolute; right: 14px; bottom: 14px; width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; background: var(--red); font-weight: 700; transition: transform .3s; }
+.type-tile:hover .type-tile__arrow { transform: translateX(4px); }
+
+.link-arrow { color: var(--red); font: 700 15px/1 var(--sub); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 30px; white-space: nowrap; }
+.link-arrow:hover { color: #fff; }
+
+/* ---------- Mototsikl kartochkasi (soddalashtirilgan) ---------- */
+.mgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 14px; }
+.empty { grid-column: 1 / -1; text-align: center; padding: 60px 0; color: var(--muted); }
+.mcard { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.mcard__img { position: relative; width: 100%; aspect-ratio: 4 / 3; border-radius: var(--radius); overflow: hidden; }
+.mcard__img > img, .mcard__img > .art-wrap { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+.mcard:hover .mcard__img > img, .mcard:hover .mcard__img > .art-wrap { transform: scale(1.08); }
+.mcard__img .badge { font-size: 10px; padding: 5px 9px 5px 19px; left: 8px; top: 8px; }
+.mcard__img .badge::before { left: 8px; width: 6px; height: 6px; margin-top: -3px; }
+.mcard__name { font: 700 clamp(16px, 4.2vw, 20px)/1.2 var(--sub); letter-spacing: .02em; margin-top: 14px; }
+.mcard__line { width: 64px; height: 3px; background: var(--red); margin: 10px 0 8px; transition: width .35s; }
+.mcard:hover .mcard__line { width: 100px; }
+.mcard__meta { color: var(--muted); font-size: 12px; }
+.mcard__price { font: 400 clamp(24px, 6vw, 30px)/1.1 var(--head); color: var(--red); letter-spacing: .02em; margin-top: 4px; }
+.mcard.is-sold .mcard__img { filter: grayscale(.7) brightness(.7); }
+.mcard.is-sold .mcard__price { color: var(--muted); text-decoration: line-through; }
+
+/* ---------- TUR SAHIFASI ---------- */
+.banner {
+  position: relative; min-height: 300px; display: flex; align-items: flex-end; overflow: hidden; padding: 100px 0 40px;
+  background: radial-gradient(60% 80% at 75% 50%, color-mix(in srgb, var(--c, #E10600) 40%, transparent), transparent 70%), var(--carbon), #0d0d0d;
+}
+.banner::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,10,10,.85) 10%, transparent 70%); }
+.banner__art { position: absolute; right: -12%; bottom: -6%; width: 85%; max-width: 760px; opacity: .85; }
+.banner__art .bike-art, .banner__art img { width: 100%; height: auto; }
+.banner__art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.banner__content { position: relative; z-index: 1; }
+.banner__title { font: 400 clamp(52px, 13vw, 110px)/.9 var(--head); font-style: italic; text-transform: uppercase; letter-spacing: .02em; }
+.banner__line { display: block; width: 100%; max-width: 320px; height: 5px; margin-top: 16px; background: var(--red); box-shadow: 0 0 20px rgba(225,6,0,.6); }
+
+.tabs { position: sticky; top: 64px; z-index: 30; background: #000; border-bottom: 1px solid var(--line); }
+.tabs__inner { display: flex; gap: 28px; overflow-x: auto; scrollbar-width: none; }
+.tabs__inner::-webkit-scrollbar { display: none; }
+.tab { position: relative; padding: 18px 0; font: 700 16px/1 var(--sub); letter-spacing: .05em; color: #ddd; white-space: nowrap; transition: color .2s; }
+.tab::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--red); transform: scaleX(0); transition: transform .3s; }
+.tab:hover { color: #fff; }
+.tab.active { color: var(--red); }
+.tab.active::after { transform: none; }
+.section--tight { padding: 40px 0 60px; }
+.cat-about { background: var(--bg-2); padding: 40px 0 60px; border-top: 1px solid var(--line); }
+.cat-about p { max-width: 720px; color: #c9c9c9; font-size: 16px; }
+
+/* Rasm o'rnidagi chizma */
+.art-wrap { display: flex; align-items: center; justify-content: center; padding: 6% 8%; background: radial-gradient(70% 60% at 50% 60%, color-mix(in srgb, var(--c, #E10600) 35%, transparent), transparent 70%), var(--carbon), #0d0d0d; }
+.art-wrap .bike-art { width: 100%; height: auto; filter: drop-shadow(0 14px 18px rgba(0,0,0,.8)); }
+
+/* Status belgisi */
+.badge { position: absolute; left: 12px; top: 12px; z-index: 2; padding: 6px 12px 6px 22px; border-radius: 30px; font: 700 12px/1 var(--sub); letter-spacing: .08em; text-transform: uppercase; background: rgba(0,0,0,.65); backdrop-filter: blur(6px); }
+.badge::before { content: ""; position: absolute; left: 10px; top: 50%; width: 7px; height: 7px; margin-top: -3.5px; border-radius: 50%; background: currentColor; box-shadow: 0 0 8px currentColor; }
+.badge--sale { color: var(--green); }
+.badge--reserved { color: var(--yellow); }
+.badge--sold { color: #ff3b30; }
+.specs .badge { position: static; display: inline-block; }
+
+/* ---------- 5. TRADE-IN ---------- */
+.tradein { background: var(--carbon), linear-gradient(135deg, #0d1530 0%, #0A0A0A 55%); clip-path: polygon(0 0, 100% 40px, 100% 100%, 0 calc(100% - 40px)); padding: 110px 0; }
+.tradein__inner { display: grid; gap: 32px; }
+.tradein__text p:not(.kicker) { color: #c9c9c9; font-size: 16px; max-width: 460px; }
+.tradein__arrows { display: flex; align-items: center; gap: 14px; margin-top: 26px; font: 400 34px/1 var(--head); font-style: italic; }
+.tradein__arrows span:first-child { color: var(--muted); }
+.tradein__arrows svg { width: 70px; }
+.form { display: grid; gap: 14px; padding: 22px; background: rgba(18,18,18,.85); border: 1px solid var(--line); border-radius: var(--radius); backdrop-filter: blur(10px); }
+.form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.upload { display: flex; align-items: center; gap: 14px; padding: 16px; border: 1.5px dashed #444; border-radius: 10px; cursor: pointer; transition: border-color .2s, background .2s; }
+.upload:hover { border-color: var(--blue); background: rgba(30,91,255,.06); }
+.upload input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.upload .ico { width: 28px; height: 28px; color: var(--blue); fill: none; }
+.upload b { display: block; font: 700 15px/1.2 var(--sub); letter-spacing: .05em; text-transform: uppercase; }
+.upload small { color: var(--muted); font-size: 12px; }
+.upload__preview { display: flex; gap: 8px; flex-wrap: wrap; }
+.upload__preview:empty { display: none; }
+.upload__preview img { width: 64px; height: 64px; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); }
+.form__ok { color: var(--green); font-weight: 600; text-align: center; }
+
+/* ---------- Forma maydonlari ---------- */
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field > span { font: 700 12px/1 var(--sub); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.field select, .field input {
+  width: 100%; padding: 13px 14px; background: var(--bg-3); border: 1px solid var(--line); border-radius: 10px;
+  outline: none; transition: border-color .2s, box-shadow .2s; appearance: none; -webkit-appearance: none;
+}
+.field input::placeholder { color: #666; }
+.field select:focus, .field input:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(225,6,0,.2); }
+
+/* ---------- SOTIB BERISH XIZMATI ---------- */
+.sell__inner { display: grid; gap: 32px; }
+.sell__lead { color: #c9c9c9; font-size: 16px; max-width: 480px; margin-bottom: 26px; }
+.steps { list-style: none; counter-reset: step; display: grid; gap: 12px; }
+.step { counter-increment: step; position: relative; padding: 14px 16px 14px 66px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px; transition: border-color .3s, transform .3s; }
+.step:hover { border-color: rgba(225,6,0,.5); transform: translateX(4px); }
+.step::before {
+  content: "0" counter(step); position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  font: 400 34px/1 var(--head); font-style: italic; color: var(--red); text-shadow: 0 0 16px rgba(225,6,0,.5);
+}
+.step b { display: block; font: 700 17px/1.2 var(--sub); letter-spacing: .04em; text-transform: uppercase; }
+.step span { color: var(--muted); font-size: 13.5px; }
+
+/* ---------- 6. SOTILGANLAR ---------- */
+.section__head--row { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
+.carousel__nav { display: none; gap: 10px; margin-bottom: 28px; }
+.carousel { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; margin: 0 -16px; padding-inline: 16px; scrollbar-width: none; }
+.carousel::-webkit-scrollbar { display: none; }
+.sold-card { flex: 0 0 82%; scroll-snap-align: start; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.sold-card__media { position: relative; aspect-ratio: 16 / 10; display: flex; align-items: center; justify-content: center; padding: 8%; background: radial-gradient(60% 60% at 50% 60%, color-mix(in srgb, var(--c) 35%, transparent), transparent 70%), var(--carbon), #0d0d0d; }
+.sold-card__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.sold-card__media .bike-art { width: 100%; }
+.sold-card figcaption { padding: 18px; }
+.sold-card h3 { font: 400 26px/1 var(--head); font-style: italic; margin-bottom: 10px; }
+.sold-card blockquote { color: #cfcfcf; font-size: 14px; }
+.sold-card__owner { margin-top: 10px; color: var(--red); font: 700 14px var(--sub); letter-spacing: .05em; }
+
+/* ---------- 7. BIZ HAQIMIZDA ---------- */
+.about { background: var(--bg-2); }
+.about__inner { display: grid; gap: 32px; }
+.about__photo {
+  position: relative; aspect-ratio: 4 / 5; border-radius: var(--radius); overflow: hidden;
+  background: center / cover no-repeat; border: 1px solid var(--line);
+}
+.about__photo.is-placeholder {
+  background:
+    radial-gradient(28% 22% at 50% 34%, #2a2a2a 98%, transparent 100%),
+    radial-gradient(48% 38% at 50% 92%, #222 98%, transparent 100%),
+    linear-gradient(170deg, rgba(225,6,0,.35), transparent 40%),
+    var(--carbon), #111;
+}
+.about__photo::after { content: ""; position: absolute; left: -10%; right: -10%; bottom: 28%; height: 3px; background: var(--red); box-shadow: 0 0 20px var(--red), 0 0 50px var(--red); transform: rotate(-6deg); }
+.about__badge { position: absolute; left: 16px; bottom: 16px; z-index: 2; padding: 12px 16px; background: rgba(0,0,0,.7); backdrop-filter: blur(8px); border-left: 3px solid var(--red); }
+.about__badge b { display: block; font: 400 26px/1 var(--head); font-style: italic; letter-spacing: .03em; }
+.about__badge span { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .12em; }
+.about__text > p:not(.kicker) { color: #c9c9c9; margin-bottom: 14px; font-size: 16px; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 26px; }
+.stat { padding: 16px 10px; background: var(--bg-3); border: 1px solid var(--line); border-radius: 12px; text-align: center; position: relative; overflow: hidden; }
+.stat::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: linear-gradient(90deg, var(--red), var(--blue)); }
+.stat b { display: block; font: 400 clamp(28px, 8vw, 46px)/1 var(--head); color: #fff; }
+.stat span { font-size: 11px; line-height: 1.3; color: var(--muted); display: block; margin-top: 6px; }
+
+/* ---------- 8. VIDEOLAR ---------- */
+.videos__grid { display: grid; gap: 18px; }
+.video { position: relative; aspect-ratio: 16 / 9; border-radius: var(--radius); overflow: hidden; background: #111; border: 1px solid var(--line); cursor: pointer; }
+.video img, .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; }
+.video__ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 10% 18%; background: var(--carbon), #0e0e0e; }
+.video__ph .bike-art { width: 100%; opacity: .55; }
+.video::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 40%, rgba(0,0,0,.85)); pointer-events: none; }
+.video:has(iframe)::after { display: none; }
+.video__play { position: absolute; left: 50%; top: 45%; z-index: 2; width: 68px; height: 68px; margin: -34px 0 0 -34px; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 10px rgba(225,6,0,.25), 0 0 40px rgba(225,6,0,.6); transition: transform .25s; }
+.video__play span { position: absolute; left: 27px; top: 22px; border: 12px solid transparent; border-left: 18px solid #fff; border-right: 0; }
+.video:hover .video__play { transform: scale(1.1); }
+.video__title { position: absolute; left: 16px; right: 16px; bottom: 12px; z-index: 2; font: 700 17px/1.2 var(--sub); letter-spacing: .03em; }
+.video__title small { color: var(--muted); font-weight: 600; }
+
+/* ---------- 9. ALOQA ---------- */
+.contacts__inner { display: grid; gap: 28px; }
+.contacts__list { list-style: none; display: grid; gap: 14px; margin-bottom: 24px; }
+.contacts__list li { padding: 14px 16px; background: var(--bg-2); border: 1px solid var(--line); border-left: 3px solid var(--red); border-radius: 0 10px 10px 0; }
+.contacts__list small { display: block; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .14em; }
+.contacts__list b, .contacts__list a { font: 700 19px/1.3 var(--sub); letter-spacing: .02em; }
+.socials { display: flex; gap: 12px; }
+.social { width: 50px; height: 50px; display: grid; place-items: center; border-radius: 12px; background: var(--bg-3); border: 1px solid var(--line); transition: .25s; }
+.social .ico { width: 22px; height: 22px; }
+.social:hover { background: var(--red); border-color: var(--red); transform: translateY(-3px); }
+.map { position: relative; min-height: 320px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--carbon), #111; }
+.map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: invert(.92) hue-rotate(180deg) saturate(.6) contrast(.9); }
+
+/* ---------- Footer ---------- */
+.footer { border-top: 1px solid var(--line); padding: 28px 0 100px; background: #060606; }
+.footer__inner { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+.footer p { color: var(--muted); font-size: 13px; }
+
+/* ---------- 10. Suzuvchi tugmalar (mobil) ---------- */
+.fab { position: fixed; right: 16px; bottom: 16px; z-index: 40; display: flex; flex-direction: column; gap: 12px; }
+.fab__btn { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; color: #fff; box-shadow: 0 10px 25px rgba(0,0,0,.5); transition: transform .2s; }
+.fab__btn .ico { width: 26px; height: 26px; }
+.fab__btn--tg { background: #229ED9; }
+.fab__btn--phone { background: var(--red); animation: ring 2.4s infinite; }
+.fab__btn:active { transform: scale(.92); }
+@keyframes ring { 0%, 100% { box-shadow: 0 0 0 0 rgba(225,6,0,.6), 0 10px 25px rgba(0,0,0,.5); } 60% { box-shadow: 0 0 0 16px rgba(225,6,0,0), 0 10px 25px rgba(0,0,0,.5); } }
+
+/* ---------- 4. MOTOTSIKL SAHIFASI ---------- */
+.detail { padding: 88px 0 40px; min-height: 80vh; }
+.detail__back { display: inline-block; color: var(--muted); font: 600 14px var(--sub); letter-spacing: .06em; margin-bottom: 18px; }
+.detail__back:hover { color: #fff; }
+.detail__grid { display: grid; gap: 28px; }
+.gallery__main { position: relative; aspect-ratio: 4 / 3; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: #0c0c0c; }
+.gallery__main > img, .gallery__main > .art-wrap { width: 100%; height: 100%; object-fit: cover; }
+.gallery__thumbs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 10px; }
+.gallery__thumb { aspect-ratio: 1; border-radius: 8px; overflow: hidden; border: 2px solid transparent; opacity: .6; transition: .2s; }
+.gallery__thumb.active, .gallery__thumb:hover { border-color: var(--red); opacity: 1; }
+.gallery__thumb img, .gallery__thumb .art-wrap { width: 100%; height: 100%; object-fit: cover; }
+.gallery__video { margin-top: 24px; }
+.gallery__video h3 { font: 400 28px var(--head); font-style: italic; margin-bottom: 10px; }
+.detail__brand { font: 700 12px/1 var(--sub); letter-spacing: .2em; text-transform: uppercase; color: var(--red); }
+.detail__title { font: 400 clamp(48px, 12vw, 84px)/.9 var(--head); font-style: italic; letter-spacing: .01em; margin: 8px 0 12px; text-transform: uppercase; }
+.detail__title span { color: var(--muted); font-size: .55em; }
+.detail__price { font: 400 clamp(48px, 12vw, 70px)/1 var(--head); color: var(--red); text-shadow: 0 0 30px rgba(225,6,0,.4); margin-bottom: 14px; }
+.detail__desc { color: #c9c9c9; font-size: 16px; margin-bottom: 22px; }
+.detail__actions { display: grid; gap: 12px; margin-bottom: 30px; }
+.detail__actions .btn--outline { transform: none; clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%); }
+.detail__actions .btn--outline > * { transform: none; }
+.detail__h { font: 400 30px var(--head); font-style: italic; letter-spacing: .03em; margin-bottom: 12px; }
+.specs { width: 100%; border-collapse: collapse; }
+.specs th, .specs td { padding: 12px 0; border-bottom: 1px solid var(--line); text-align: left; }
+.specs th { color: var(--muted); font-weight: 500; font-size: 14px; width: 45%; }
+.specs td { font: 700 17px var(--sub); letter-spacing: .02em; }
+.detail__similar { margin-top: 72px; }
+.detail__nf { text-align: center; padding: 80px 16px; }
+
+/* =====================================================================
+   PLANSHET (≥ 640px)
+   ===================================================================== */
+@media (min-width: 640px) {
+  .hero__cta { flex-direction: row; }
+  .adv__grid { grid-template-columns: repeat(4, 1fr); }
+  .mgrid { grid-template-columns: repeat(3, 1fr); gap: 40px 22px; }
+  .types__grid { gap: 20px; }
+  .sold-card { flex-basis: 46%; }
+  .videos__grid { grid-template-columns: repeat(2, 1fr); }
+  .videos__grid .video:first-child { grid-column: 1 / -1; }
+  .carousel__nav { display: flex; }
+  .detail__actions { grid-template-columns: 1fr 1fr; }
+  .detail__actions .btn:first-child { grid-column: 1 / -1; }
+}
+
+/* =====================================================================
+   KOMPYUTER (≥ 1024px)
+   ===================================================================== */
+@media (min-width: 1024px) {
+  body { font-size: 16px; }
+  .section { padding: 110px 0; }
+  .header__inner { height: 76px; }
+  .burger { display: none; }
+  .nav { position: static; transform: none; flex-direction: row; background: none; backdrop-filter: none; padding: 0; gap: 28px; }
+  .nav a { font: 700 15px/1 var(--sub); font-style: normal; letter-spacing: .14em; text-transform: uppercase; border: 0; padding: 8px 0; position: relative; }
+  .nav a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: 0; height: 2px; background: var(--red); transition: right .3s; }
+  .nav a:hover { color: #fff; }
+  .nav a:hover::after { right: 0; }
+
+  .hero { align-items: center; padding-bottom: 0; }
+  .hero__media { justify-content: flex-end; }
+  .hero__bike { width: 62vw; max-width: 980px; margin: 14vh -4vw 0 0; }
+  .hero::after { background: linear-gradient(90deg, var(--bg) 8%, rgba(10,10,10,.6) 45%, transparent 70%), linear-gradient(to top, var(--bg), transparent 30%); }
+  .hero__content { max-width: 1240px; }
+  .hero__title { max-width: 760px; }
+  .hero__scroll { display: block; position: absolute; left: 50%; bottom: 30px; width: 26px; height: 42px; border: 2px solid rgba(255,255,255,.5); border-radius: 14px; }
+  .hero__scroll span { position: absolute; left: 50%; top: 8px; width: 4px; height: 8px; margin-left: -2px; border-radius: 2px; background: var(--red); animation: wheel 1.6s infinite; }
+  @keyframes wheel { to { transform: translateY(14px); opacity: 0; } }
+
+  .adv { padding: 46px 0; }
+  .adv__ico { width: 48px; height: 48px; }
+  .adv__item b { font-size: 28px; }
+  .adv__item span { font-size: 14px; }
+
+
+  .types__grid { grid-template-columns: repeat(4, 1fr); }
+  .tabs { top: 76px; }
+  .tabs__inner { gap: 64px; }
+  .banner { min-height: 420px; padding-bottom: 56px; }
+  .banner__art { right: 2%; width: 50%; bottom: -4%; }
+  .sell__inner { grid-template-columns: 1fr 1fr; align-items: center; gap: 60px; }
+  .tradein__inner { grid-template-columns: 1fr 1fr; align-items: center; gap: 60px; }
+  .form { padding: 32px; }
+  .sold-card { flex-basis: calc((100% - 40px) / 3); }
+  .about__inner { grid-template-columns: 5fr 7fr; gap: 64px; align-items: center; }
+  .stat span { font-size: 13px; }
+  .videos__grid { grid-template-columns: 2fr 1fr; grid-template-rows: 1fr 1fr; }
+  .videos__grid .video:first-child { grid-column: 1; grid-row: 1 / span 2; aspect-ratio: auto; }
+  .contacts__inner { grid-template-columns: 5fr 7fr; gap: 48px; }
+  .map { min-height: 460px; }
+
+  .footer { padding-bottom: 28px; }
+  .footer__inner { flex-direction: row; justify-content: space-between; align-items: center; }
+  .fab { display: none; }
+
+  .detail { padding-top: 110px; }
+  .detail__grid { grid-template-columns: 7fr 5fr; gap: 48px; align-items: start; }
+  .detail__info { position: sticky; top: 100px; }
+}

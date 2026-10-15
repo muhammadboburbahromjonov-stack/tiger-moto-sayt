@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>TIGER Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="top__brand"><b>TIGER</b><span>Admin panel</span></div>
+  <div class="top__right">
+    <span id="dirtyNote" class="dirty" hidden>● Saqlanmagan o'zgarishlar</span>
+    <a href="../index.html" target="_blank" rel="noopener" class="btn btn--ghost">Saytni ochish ↗</a>
+    <button id="saveBtn" class="btn btn--primary" disabled title="Ctrl + S">Saqlash</button>
+  </div>
+</header>
+
+<div id="serverWarn" class="warn" hidden>
+  ⚠️ Admin panel server orqali ochilmagan — o'zgarishlar saqlanmaydi.
+  Sayt papkasidagi <b>admin.bat</b> ni ikki marta bosing (yoki <code>python admin.py</code>).
+</div>
+
+<nav class="tabs" id="tabs">
+  <button data-tab="bikes" class="active">Mototsikllar <span class="count" id="bikeCount"></span></button>
+  <button data-tab="types">Turlar</button>
+  <button data-tab="sold">Mijoz fikrlari</button>
+  <button data-tab="videos">Videolar</button>
+  <button data-tab="site">Sozlamalar</button>
+</nav>
+
+<main class="main">
+  <!-- MOTOTSIKLLAR -->
+  <section class="panel active" id="tab-bikes">
+    <div class="toolbar">
+      <input type="search" id="bikeSearch" placeholder="Qidirish: brend, model, yil">
+      <select id="bikeFilter">
+        <option value="all">Hammasi</option>
+        <option value="sale">Sotuvda</option>
+        <option value="reserved">Bron</option>
+        <option value="sold">Sotilgan</option>
+      </select>
+      <button class="btn btn--primary" data-act="add-bike">+ Yangi mototsikl</button>
+    </div>
+    <p class="hint">Narx va holatni ro'yxatning o'zida o'zgartirish mumkin. Ro'yxatdagi birinchi 6 ta sotuvdagi mototsikl bosh sahifadagi "Yangi kelganlar"da chiqadi.</p>
+    <div id="bikeTable" class="rows"></div>
+  </section>
+
+  <!-- TURLAR -->
+  <section class="panel" id="tab-types">
+    <div class="toolbar">
+      <p class="hint">Har bir tur saytda alohida sahifa bo'lib ochiladi.</p>
+      <button class="btn btn--primary" data-act="add-type">+ Yangi tur</button>
+    </div>
+    <div id="typesList" class="cards"></div>
+  </section>
+
+  <!-- FIKRLAR -->
+  <section class="panel" id="tab-sold">
+    <div class="toolbar">
+      <p class="hint">"Sotilgan mototsikllar" bo'limi. Faqat haqiqiy mijozlar fikri va rasmlarini joylang.</p>
+      <button class="btn btn--primary" data-act="add-sold">+ Fikr qo'shish</button>
+    </div>
+    <div id="soldList" class="cards"></div>
+  </section>
+
+  <!-- VIDEOLAR -->
+  <section class="panel" id="tab-videos">
+    <div class="toolbar">
+      <p class="hint">YouTube havolasini to'liq qo'yish mumkin — ID o'zi ajratib olinadi.</p>
+      <button class="btn btn--primary" data-act="add-video">+ Video qo'shish</button>
+    </div>
+    <div id="videoList" class="cards"></div>
+  </section>
+
+  <!-- SOZLAMALAR -->
+  <section class="panel" id="tab-site">
+    <div id="siteForm"></div>
+  </section>
+</main>
+
+<!-- Mototsiklni tahrirlash oynasi -->
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer__bg" data-act="close-drawer"></div>
+  <div class="drawer__panel" role="dialog" aria-labelledby="drawerTitle">
+    <header class="drawer__head">
+      <h2 id="drawerTitle"></h2>
+      <button class="icon-btn" data-act="close-drawer" aria-label="Yopish">✕</button>
+    </header>
+    <div class="drawer__body" id="drawerBody"></div>
+    <footer class="drawer__foot">
+      <button class="btn btn--primary" data-act="close-drawer">Tayyor</button>
+    </footer>
+  </div>
+</aside>
+
+<datalist id="brandList"></datalist>
+<div id="toast" class="toast" role="status"></div>
+
+<script src="../js/data.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

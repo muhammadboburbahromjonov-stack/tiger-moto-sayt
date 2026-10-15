@@ -1,0 +1,6 @@
+# Admin panel zaxira nusxalari (faqat shu kompyuter uchun)
+backups/
+*.tmp
+__pycache__/
+# Ilova sozlamalari
+.claude/

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TIGER Automotocentre — Toshkentda original mototsikllar</title>
+  <meta name="description" content="Koreya, Yaponiya va BAAdan original yangi va ishlatilgan mototsikllar. Trade-in, test-drayv, toza hujjatlar. Toshkent.">
+  <meta name="theme-color" content="#0A0A0A">
+  <meta property="og:title" content="TIGER Automotocentre — Toshkentda original mototsikllar">
+  <meta property="og:description" content="Original mototsikllar • Trade-in • Test-drayv">
+  <meta property="og:type" content="website">
+  <!-- og:image uchun: <meta property="og:image" content="https://SIZNING-DOMEN/img/og.jpg"> -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script type="application/ld+json">
+  { "@context": "https://schema.org", "@type": "MotorcycleDealer",
+    "name": "TIGER Automotocentre", "address": { "@type": "PostalAddress", "addressLocality": "Tashkent", "addressCountry": "UZ" },
+    "openingHours": "Mo-Su 12:00-21:00" }
+  </script>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="index.html" class="logo" aria-label="TIGER Automotocentre">
+      <span class="logo__mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40"><path d="M4 8 20 2l16 6-3 18-13 12L7 26z" fill="#1E5BFF"/><path d="M11 12h18l-2 5h-5l-3 14-5-4 2-10h-6z" fill="#fff"/><path d="M8 9l6 6M32 9l-6 6" stroke="#E10600" stroke-width="2.5"/></svg>
+      </span>
+      <span class="logo__text">TIGER<small>AUTOMOTOCENTRE</small></span>
+    </a>
+
+    <nav class="nav" id="nav">
+      <a href="category.html" data-i18n="nav.motos">Mototsikllar</a>
+      <a href="#tradein" data-i18n="nav.tradein">Trade-in</a>
+      <a href="#sell" data-i18n="nav.sell">Sotib berish</a>
+      <a href="#about" data-i18n="nav.about">Biz haqimizda</a>
+      <a href="#contacts" data-i18n="nav.contacts">Aloqa</a>
+    </nav>
+
+    <div class="header__right">
+      <div class="lang" role="group" aria-label="Til">
+        <button data-lang="uz" class="active">UZ</button><button data-lang="ru">RU</button>
+      </div>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ============ 1. HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero__bg" aria-hidden="true">
+    <div class="hero__glow"></div>
+    <div class="hero__speed"></div>
+    <div class="hero__floor"></div>
+    <div class="hero__neon"></div>
+  </div>
+  <!-- Video bo'lsa JS shu yerga qo'shadi (SITE.heroVideo) -->
+  <div class="hero__media" id="heroMedia" aria-hidden="true"></div>
+
+  <div class="container hero__content">
+    <p class="kicker reveal">TIGER Automotocentre · Tashkent</p>
+    <h1 class="hero__title reveal" data-i18n-html="hero.title">Orzuingizdagi mototsikl — <em>Koreya, Yaponiya va BAAdan</em></h1>
+    <p class="hero__sub reveal" data-i18n="hero.sub">Original mototsikllar • Trade-in • Test-drayv</p>
+    <div class="hero__cta reveal">
+      <a href="#catalog" class="btn btn--red" data-i18n="cta.catalog">Katalogni ko'rish</a>
+      <a href="#" class="btn btn--outline js-tg" target="_blank" rel="noopener">
+        <svg class="ico"><use href="#i-tg"/></svg><span data-i18n="cta.telegram">Telegram orqali yozish</span>
+      </a>
+    </div>
+  </div>
+  <a href="#advantages" class="hero__scroll" aria-label="Scroll"><span></span></a>
+</section>
+
+<!-- ============ 2. AFZALLIKLAR ============ -->
+<section class="adv" id="advantages">
+  <div class="container adv__grid">
+    <div class="adv__item reveal">
+      <svg class="adv__ico" viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>
+      <div><b data-i18n="adv.1.t">Original</b><span data-i18n="adv.1.d">Hujjatlari toza</span></div>
+    </div>
+    <div class="adv__item reveal">
+      <svg class="adv__ico" viewBox="0 0 24 24"><path d="M4 9h13l-3-3M20 15H7l3 3"/></svg>
+      <div><b data-i18n="adv.2.t">Trade-in</b><span data-i18n="adv.2.d">Eski motoni almashtirish</span></div>
+    </div>
+    <div class="adv__item reveal">
+      <svg class="adv__ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 12 16 8M12 3v2M3 12h2M19 12h2"/></svg>
+      <div><b data-i18n="adv.3.t">Test-drayv</b><span data-i18n="adv.3.d">Xariddan oldin sinab ko'ring</span></div>
+    </div>
+    <div class="adv__item reveal">
+      <svg class="adv__ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>
+      <div><b data-i18n="adv.4.t">Import</b><span data-i18n="adv.4.d">Koreya, Yaponiya, BAAdan</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. MOTOTSIKL TURLARI ============ -->
+<section class="section types" id="catalog">
+  <div class="container">
+    <div class="section__head reveal">
+      <p class="kicker" data-i18n="types.kicker">Showroom</p>
+      <h2 class="section__title" data-i18n="types.title">Mototsikl turlari</h2>
+    </div>
+    <!-- Tur kartochkalari JS orqali data.js dagi TYPES dan chiziladi -->
+    <div class="types__grid" id="typesGrid"></div>
+  </div>
+</section>
+
+<!-- ============ YANGI KELGANLAR ============ -->
+<section class="section latest">
+  <div class="container">
+    <div class="section__head section__head--row reveal">
+      <div>
+        <p class="kicker" data-i18n="latest.kicker">Sotuvda</p>
+        <h2 class="section__title" data-i18n="latest.title">Yangi kelganlar</h2>
+      </div>
+      <a href="category.html" class="link-arrow" data-i18n="btn.allBikes">Barcha mototsikllar →</a>
+    </div>
+    <div class="mgrid" id="latestGrid"></div>
+  </div>
+</section>
+
+<!-- ============ 5. TRADE-IN ============ -->
+<section class="section tradein" id="tradein">
+  <div class="container tradein__inner">
+    <div class="tradein__text reveal">
+      <p class="kicker" data-i18n="trade.kicker">Trade-in</p>
+      <h2 class="section__title" data-i18n="trade.title">Motongizni baholaymiz</h2>
+      <p data-i18n="trade.text">Eski mototsiklingizni yangisiga almashtiring.</p>
+      <div class="tradein__arrows" aria-hidden="true"><span>OLD</span><svg viewBox="0 0 60 20"><path d="M0 10h55M45 2l10 8-10 8" fill="none" stroke="#E10600" stroke-width="3"/></svg><span>NEW</span></div>
+    </div>
+
+    <form class="form reveal" id="tradeForm">
+      <label class="field"><span data-i18n="trade.brand">Brend / model</span><input name="model" required placeholder="Yamaha R6"></label>
+      <div class="form__row">
+        <label class="field"><span data-i18n="trade.year">Yili</span><input name="year" type="number" min="1980" max="2030" required placeholder="2018"></label>
+        <label class="field"><span data-i18n="trade.km">Yurgani (km)</span><input name="km" type="number" min="0" required placeholder="15000"></label>
+      </div>
+      <label class="upload">
+        <input type="file" id="tradePhotos" accept="image/*" multiple>
+        <svg class="ico" viewBox="0 0 24 24"><path d="M4 16v4h16v-4M12 3v13M7 8l5-5 5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        <span><b data-i18n="trade.photo">Rasm yuklash</b><small data-i18n="trade.photoHint">Bir nechta rasm tanlash mumkin</small></span>
+      </label>
+      <div class="upload__preview" id="tradePreview"></div>
+      <label class="field"><span data-i18n="trade.phone">Telefon raqamingiz</span><input name="phone" type="tel" required placeholder="+998 __ ___ __ __"></label>
+      <button class="btn btn--red btn--block" type="submit" data-i18n="trade.submit">Motongizni baholaymiz</button>
+      <p class="form__ok" id="tradeOk" hidden data-i18n="trade.ok"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ SOTIB BERISH XIZMATI ============ -->
+<section class="section sell" id="sell">
+  <div class="container sell__inner">
+    <div class="sell__text reveal">
+      <p class="kicker" data-i18n="sell.kicker">Xizmat</p>
+      <h2 class="section__title" data-i18n="sell.title">Motongizni sotib beramiz</h2>
+      <p class="sell__lead" data-i18n="sell.text"></p>
+      <ol class="steps">
+        <li class="step"><b data-i18n="sell.s1.t">Ariza qoldiring</b><span data-i18n="sell.s1.d"></span></li>
+        <li class="step"><b data-i18n="sell.s2.t">Baholaymiz</b><span data-i18n="sell.s2.d"></span></li>
+        <li class="step"><b data-i18n="sell.s3.t">Reklama qilamiz</b><span data-i18n="sell.s3.d"></span></li>
+        <li class="step"><b data-i18n="sell.s4.t">Pulni olasiz</b><span data-i18n="sell.s4.d"></span></li>
+      </ol>
+    </div>
+
+    <form class="form reveal" id="sellForm">
+      <label class="field"><span data-i18n="trade.brand">Brend / model</span><input name="model" required placeholder="Kawasaki Z900"></label>
+      <div class="form__row">
+        <label class="field"><span data-i18n="trade.year">Yili</span><input name="year" type="number" min="1980" max="2030" required placeholder="2019"></label>
+        <label class="field"><span data-i18n="trade.km">Yurgani (km)</span><input name="km" type="number" min="0" required placeholder="12000"></label>
+      </div>
+      <label class="field"><span data-i18n="sell.price">Kutilayotgan narx ($)</span><input name="price" type="number" min="0" placeholder="8500"></label>
+      <label class="upload">
+        <input type="file" id="sellPhotos" accept="image/*" multiple>
+        <svg class="ico" viewBox="0 0 24 24"><path d="M4 16v4h16v-4M12 3v13M7 8l5-5 5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        <span><b data-i18n="trade.photo">Rasm yuklash</b><small data-i18n="trade.photoHint">Bir nechta rasm tanlash mumkin</small></span>
+      </label>
+      <div class="upload__preview" id="sellPreview"></div>
+      <label class="field"><span data-i18n="trade.phone">Telefon raqamingiz</span><input name="phone" type="tel" required placeholder="+998 __ ___ __ __"></label>
+      <button class="btn btn--red btn--block" type="submit" data-i18n="sell.submit">Sotishga topshirish</button>
+      <p class="form__ok" id="sellOk" hidden data-i18n="trade.ok"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ 6. SOTILGANLAR ============ -->
+<section class="section sold" id="sold">
+  <div class="container">
+    <div class="section__head section__head--row reveal">
+      <div>
+        <p class="kicker" data-i18n="sold.kicker">Baxtli egalar</p>
+        <h2 class="section__title" data-i18n="sold.title">Sotilgan mototsikllar</h2>
+      </div>
+      <div class="carousel__nav">
+        <button class="round-btn" id="soldPrev" aria-label="Prev">‹</button>
+        <button class="round-btn" id="soldNext" aria-label="Next">›</button>
+      </div>
+    </div>
+    <div class="carousel" id="soldTrack"></div>
+  </div>
+</section>
+
+<!-- ============ 7. BIZ HAQIMIZDA ============ -->
+<section class="section about" id="about">
+  <div class="container about__inner">
+    <div class="about__photo reveal" id="ownerPhoto">
+      <div class="about__badge"><b>Iskandar Maripov</b><span data-i18n="about.owner">Asoschi</span></div>
+    </div>
+    <div class="about__text reveal">
+      <p class="kicker" data-i18n="about.kicker">Biz haqimizda</p>
+      <h2 class="section__title" data-i18n="about.title">TIGER Automotocentre</h2>
+      <p data-i18n="about.text1"></p>
+      <p data-i18n="about.text2"></p>
+      <div class="stats">
+        <div class="stat"><b class="js-count" data-key="followers">0</b><span data-i18n="stat.followers">Instagram obunachilar</span></div>
+        <div class="stat"><b class="js-count" data-key="sold">0</b><span data-i18n="stat.sold">Sotilgan mototsikllar</span></div>
+        <div class="stat"><b class="js-count" data-key="years">0</b><span data-i18n="stat.years">Yillik tajriba</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. VIDEOLAR ============ -->
+<section class="section videos" id="videos">
+  <div class="container">
+    <div class="section__head reveal">
+      <p class="kicker" data-i18n="video.kicker">Videolar</p>
+      <h2 class="section__title" data-i18n="video.title">Safarlar va obzorlar</h2>
+    </div>
+    <div class="videos__grid" id="videoGrid"></div>
+  </div>
+</section>
+
+<!-- ============ 9. ALOQA ============ -->
+<section class="section contacts" id="contacts">
+  <div class="container contacts__inner">
+    <div class="contacts__info reveal">
+      <p class="kicker" data-i18n="contacts.kicker">Aloqa</p>
+      <h2 class="section__title" data-i18n="contacts.title">Showroomga keling</h2>
+      <ul class="contacts__list">
+        <li><small data-i18n="contacts.address">Manzil</small><b class="js-address"></b></li>
+        <li><small data-i18n="contacts.hours">Ish vaqti</small><b><span data-i18n="contacts.daily">Har kuni</span> <span class="js-hours"></span></b></li>
+        <li><small data-i18n="contacts.phone">Telefon</small><a class="js-phone js-phone-text" href="#"></a></li>
+      </ul>
+      <div class="socials">
+        <a class="social js-tg" href="#" target="_blank" rel="noopener" aria-label="Telegram"><svg class="ico"><use href="#i-tg"/></svg></a>
+        <a class="social js-ig" href="#" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ico"><use href="#i-ig"/></svg></a>
+        <a class="social js-yt" href="#" target="_blank" rel="noopener" aria-label="YouTube"><svg class="ico"><use href="#i-yt"/></svg></a>
+        <a class="social js-phone" href="#" aria-label="Phone"><svg class="ico"><use href="#i-phone"/></svg></a>
+      </div>
+    </div>
+    <div class="map reveal" id="map"></div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <span class="logo__text">TIGER<small>AUTOMOTOCENTRE</small></span>
+    <p>© <span id="year"></span> TIGER Automotocentre. <span data-i18n="footer.rights">Barcha huquqlar himoyalangan.</span></p>
+  </div>
+</footer>
+
+<!-- ============ 10. MOBIL SUZUVCHI TUGMALAR ============ -->
+<div class="fab">
+  <a class="fab__btn fab__btn--tg js-tg" href="#" target="_blank" rel="noopener" aria-label="Telegram"><svg class="ico"><use href="#i-tg"/></svg></a>
+  <a class="fab__btn fab__btn--phone js-phone" href="#" aria-label="Phone"><svg class="ico"><use href="#i-phone"/></svg></a>
+</div>
+
+<!-- SVG ikonkalar (bir marta yoziladi, <use> orqali ishlatiladi) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-tg" viewBox="0 0 24 24"><path fill="currentColor" d="M21.4 3.6 2.9 10.8c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.5c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.3-.5-1.9-1.4-1.5zM9 13.5l9.4-5.9c.5-.3.9-.1.5.2l-8 7.3-.3 3.3z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></g></symbol>
+  <symbol id="i-yt" viewBox="0 0 24 24"><path fill="currentColor" d="M22 8.2s-.2-1.5-.8-2.1c-.8-.8-1.6-.8-2-.9C16.4 5 12 5 12 5s-4.4 0-7.2.2c-.4.1-1.2.1-2 .9C2.2 6.7 2 8.2 2 8.2S1.8 10 1.8 11.8v1.6c0 1.8.2 3.6.2 3.6s.2 1.5.8 2.1c.8.8 1.8.8 2.2.9 1.6.2 7 .2 7 .2s4.4 0 7.2-.2c.4-.1 1.2-.1 2-.9.6-.6.8-2.1.8-2.1s.2-1.8.2-3.6v-1.6C22.2 10 22 8.2 22 8.2zM9.9 15.1V8.9l5.6 3.1z"/></symbol>
+</svg>
+
+<script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

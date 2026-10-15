@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <!-- Telefonda to'g'ri ko'rinishi uchun -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MotoWorld — Mototsikllar olami</title>
+  <!-- CSS faylini ulaymiz -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== 1. SARLAVHA VA MENYU ===== -->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="#" class="logo">🏍️ Moto<span>World</span></a>
+
+      <!-- Telefon uchun menyu tugmasi -->
+      <button class="burger" id="burger" aria-label="Menyu">☰</button>
+
+      <nav class="nav" id="nav">
+        <a href="#home">Bosh sahifa</a>
+        <a href="#catalog">Katalog</a>
+        <a href="#about">Biz haqimizda</a>
+        <a href="#contact">Aloqa</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== 2. ASOSIY BANNER (HERO) ===== -->
+  <section class="hero" id="home">
+    <div class="container hero__content">
+      <h1>Erkinlikni <span>his qiling</span></h1>
+      <p>Eng zo'r sport, kruizer va enduro mototsikllar bir joyda.</p>
+      <a href="#catalog" class="btn">Katalogni ko'rish</a>
+    </div>
+  </section>
+
+  <!-- ===== 3. KATALOG ===== -->
+  <section class="section" id="catalog">
+    <div class="container">
+      <h2 class="section__title">Mototsikllar katalogi</h2>
+
+      <!-- Filtr tugmalari: data-filter qiymati JS da ishlatiladi -->
+      <div class="filters">
+        <button class="filter active" data-filter="all">Hammasi</button>
+        <button class="filter" data-filter="sport">Sport</button>
+        <button class="filter" data-filter="cruiser">Kruizer</button>
+        <button class="filter" data-filter="enduro">Enduro</button>
+      </div>
+
+      <!-- Kartochkalar JavaScript orqali shu yerga qo'shiladi -->
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <!-- ===== 4. BIZ HAQIMIZDA ===== -->
+  <section class="section section--dark" id="about">
+    <div class="container about">
+      <div class="about__text">
+        <h2 class="section__title">Biz haqimizda</h2>
+        <p>MotoWorld — mototsikl ixlosmandlari uchun yaratilgan o'quv loyihasi.
+           Bu yerda turli mototsikllar haqida ma'lumot topasiz.</p>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>120+</b><span>Modellar</span></div>
+        <div class="stat"><b>15</b><span>Brendlar</span></div>
+        <div class="stat"><b>5000+</b><span>Mijozlar</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5. ALOQA FORMASI ===== -->
+  <section class="section" id="contact">
+    <div class="container">
+      <h2 class="section__title">Biz bilan bog'laning</h2>
+      <form class="form" id="form">
+        <input type="text" id="name" placeholder="Ismingiz" required>
+        <input type="tel" id="phone" placeholder="Telefon raqamingiz" required>
+        <textarea id="message" rows="4" placeholder="Xabaringiz"></textarea>
+        <button type="submit" class="btn">Yuborish</button>
+        <p class="form__result" id="result"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== 6. PASTKI QISM ===== -->
+  <footer class="footer">
+    <p>© 2026 MotoWorld. O'quv loyihasi.</p>
+  </footer>
+
+  <!-- Modal oyna (kartochka bosilganda ochiladi) -->
+  <div class="modal" id="modal">
+    <div class="modal__box">
+      <button class="modal__close" id="modalClose">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- JS faylini oxirida ulaymiz, shunda HTML avval yuklanadi -->
+  <script src="script.js"></script>
+</body>
+</html>
