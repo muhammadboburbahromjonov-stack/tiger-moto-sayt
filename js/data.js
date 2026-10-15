@@ -26,7 +26,13 @@ const SITE = {
     "years": 5
   },
   "heroVideo": "",
-  "ownerPhoto": ""
+  "ownerPhoto": "",
+  "developer": {
+    "name": "TargetBot.uz",
+    "telegram": "pila2837",
+    "phone": "",
+    "url": "https://targetbot.uz"
+  }
 };
 
 const BRANDS = [

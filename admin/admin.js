@@ -285,6 +285,16 @@ function renderSite() {
         </div>
       </div>
 
+      <div class="card" data-list="SITE">
+        <h3 class="group-title">Sayt yaratuvchisi (footer)</h3><br>
+        <div class="form-grid">
+          ${inp("Ism yoki studiya nomi", "developer.name", s.developer && s.developer.name, { hint: "Bo'sh qoldirilsa, saytda ko'rinmaydi" })}
+          ${inp("Telegram username", "developer.telegram", s.developer && s.developer.telegram, { attrs: 'data-parse="user"', ph: "username" })}
+          ${inp("Telefon", "developer.phone", s.developer && s.developer.phone, { ph: "+998 90 123 45 67" })}
+          ${inp("Portfolio havolasi (ixtiyoriy)", "developer.url", s.developer && s.developer.url, { ph: "https://..." })}
+        </div>
+      </div>
+
       <div class="card">
         <h3 class="group-title">Brendlar (katalog uchun)</h3><br>
         <label class="f"><span>Har bir qatorda bitta brend</span>

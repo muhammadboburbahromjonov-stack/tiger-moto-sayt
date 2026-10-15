@@ -87,6 +87,40 @@ function observeReveal(root = document) {
   $$(".reveal:not(.is-in)", root).forEach(el => revealObs ? revealObs.observe(el) : el.classList.add("is-in"));
 }
 
+/* ---------- Sayt yaratuvchisi (footer) ---------- */
+function renderDev() {
+  const box = $("#devCredit"), d = SITE.developer;
+  if (!box || !d || !d.name) { if (box) box.hidden = true; return; }
+  const digits = String(d.phone || "").replace(/\D/g, "");
+  box.innerHTML = `
+    <button class="dev__link" type="button" aria-expanded="false" aria-controls="devCard">
+      ${t("dev.by")} <b>${esc(d.name)}</b>
+    </button>
+    <div class="dev__card" id="devCard" hidden>
+      <p class="dev__title">${t("dev.title")}</p>
+      <p class="dev__text">${t("dev.text")}</p>
+      <div class="dev__btns">
+        ${d.telegram ? `<a class="btn btn--red btn--sm" href="https://t.me/${esc(d.telegram)}?text=${encodeURIComponent(t("dev.msg"))}" target="_blank" rel="noopener"><svg class="ico"><use href="#i-tg"/></svg>${t("dev.tg")}</a>` : ""}
+        ${digits ? `<a class="btn btn--ghost btn--sm" href="tel:+${digits}"><svg class="ico"><use href="#i-phone"/></svg>${esc(d.phone)}</a>` : ""}
+        ${d.url ? `<a class="btn btn--ghost btn--sm" href="${esc(d.url)}" target="_blank" rel="noopener">${t("dev.portfolio")} ↗</a>` : ""}
+      </div>
+      <a class="dev__more" href="developer.html">${t("dev.more")}</a>
+    </div>`;
+  const btn = $(".dev__link", box), card = $(".dev__card", box);
+  btn.addEventListener("click", e => {
+    e.stopPropagation();
+    card.hidden = !card.hidden;
+    btn.setAttribute("aria-expanded", !card.hidden);
+  });
+}
+document.addEventListener("click", e => {
+  const card = $("#devCard");
+  if (card && !card.hidden && !e.target.closest(".dev")) {
+    card.hidden = true;
+    $(".dev__link").setAttribute("aria-expanded", "false");
+  }
+});
+
 /* ---------- Umumiy: header, menyu, havolalar ---------- */
 function initShell() {
   const header = $("#header"), nav = $("#nav"), burger = $("#burger");
@@ -125,6 +159,7 @@ function applyLang() {
   $$("[data-i18n-html]").forEach(el => el.innerHTML = t(el.dataset.i18nHtml));
   $$("[data-lang]").forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
   $$(".js-address").forEach(el => el.textContent = loc(SITE.address));
+  renderDev();
   renderers.forEach(fn => fn());
 }
 const renderers = []; // tilni almashtirganda qayta chiziladigan bo'limlar
@@ -361,10 +396,31 @@ function initCategory() {
   renderers.push(render);
 }
 
+/* =====================================================================
+   SAYT YARATUVCHISI SAHIFASI (developer.html)
+   ===================================================================== */
+function initDevPage() {
+  if (!$("#devPage")) return;
+  const d = SITE.developer || {};
+  const digits = String(d.phone || "").replace(/\D/g, "");
+  renderers.push(() => {
+    $$(".js-dev-tg").forEach(a => {
+      a.hidden = !d.telegram;
+      a.href = `https://t.me/${d.telegram}?text=${encodeURIComponent(t("dev.msg"))}`;
+    });
+    $$(".js-dev-tg-text").forEach(el => el.textContent = "@" + d.telegram);
+    $$(".js-dev-url").forEach(a => { a.hidden = !d.url; a.href = d.url || "#"; });
+    $$(".js-dev-url-text").forEach(el => el.textContent = String(d.url || "").replace(/^https?:\/\//, "").replace(/\/$/, "") + " ↗");
+    $$(".js-dev-phone").forEach(a => { a.hidden = !digits; a.href = `tel:+${digits}`; });
+    $$(".js-dev-phone-text").forEach(el => el.textContent = d.phone || "");
+  });
+}
+
 /* ---------- Ishga tushirish ---------- */
 initShell();
 initHome();
 initDetail();
 initCategory();
+initDevPage();
 applyLang();
 observeReveal();

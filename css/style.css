@@ -346,10 +346,57 @@ button { cursor: pointer; background: none; border: 0; }
 .map { position: relative; min-height: 320px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--carbon), #111; }
 .map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: invert(.92) hue-rotate(180deg) saturate(.6) contrast(.9); }
 
+/* Kontaktlardagi "Sayt yaratuvchisi" tugmasi */
+.social--dev { width: auto; padding: 0 16px; gap: 8px; display: inline-flex; align-items: center; font: 700 14px/1 var(--sub); letter-spacing: .06em; text-transform: uppercase; color: #ddd; border-color: rgba(30,91,255,.45); background: rgba(30,91,255,.1); }
+.social--dev:hover { background: var(--blue); border-color: var(--blue); color: #fff; }
+.socials { flex-wrap: wrap; }
+
 /* ---------- Footer ---------- */
 .footer { border-top: 1px solid var(--line); padding: 28px 0 100px; background: #060606; }
 .footer__inner { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
 .footer p { color: var(--muted); font-size: 13px; }
+
+/* Sayt yaratuvchisi */
+.dev { position: relative; }
+.dev__link { color: var(--muted); font-size: 13px; padding: 4px 0; border-bottom: 1px dashed #444; transition: color .2s, border-color .2s; }
+.dev__link b { color: #ddd; font-weight: 600; }
+.dev__link:hover, .dev__link[aria-expanded="true"] { color: #fff; border-color: var(--red); }
+.dev__card {
+  position: absolute; left: 0; bottom: calc(100% + 12px); z-index: 45; width: min(340px, calc(100vw - 32px));
+  padding: 18px; background: var(--bg-3); border: 1px solid var(--line); border-top: 3px solid var(--red);
+  border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,.7); animation: devIn .25s ease;
+}
+@keyframes devIn { from { opacity: 0; transform: translateY(8px); } }
+.dev__title { font: 400 26px/1 var(--head); font-style: italic; letter-spacing: .02em; margin-bottom: 8px; }
+.dev__text { color: #c9c9c9; font-size: 13.5px; margin-bottom: 14px; }
+.dev__btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.dev__btns .btn { padding: 10px 14px; font-size: 13px; }
+.dev__btns .ico { width: 16px; height: 16px; }
+
+.dev__more { display: inline-block; margin-top: 12px; color: var(--muted); font-size: 13px; text-decoration: underline; text-underline-offset: 3px; }
+.dev__more:hover { color: #fff; }
+
+/* ---------- SAYT YARATUVCHISI SAHIFASI ---------- */
+.devp__hero { position: relative; padding: 130px 0 60px; overflow: hidden; background: radial-gradient(60% 70% at 85% 30%, rgba(30,91,255,.25), transparent 70%), radial-gradient(40% 50% at 10% 90%, rgba(225,6,0,.18), transparent 70%), var(--carbon), var(--bg); }
+.devp__title { font: 400 clamp(46px, 11vw, 96px)/.92 var(--head); font-style: italic; text-transform: uppercase; max-width: 900px; margin-bottom: 20px; }
+.devp__title em { display: block; color: transparent; -webkit-text-stroke: 1.5px #fff; }
+.devp__lead { color: #c9c9c9; font-size: 17px; max-width: 620px; margin-bottom: 28px; }
+.devp__cta { display: flex; flex-wrap: wrap; gap: 14px; }
+.devp__grid { display: grid; gap: 14px; }
+.devp__card { position: relative; padding: 22px; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); transition: border-color .3s, transform .3s; }
+.devp__card:hover { border-color: rgba(30,91,255,.6); transform: translateY(-4px); }
+.devp__num { font: 400 40px/1 var(--head); font-style: italic; color: var(--blue); text-shadow: 0 0 18px rgba(30,91,255,.5); }
+.devp__card b { display: block; font: 700 19px/1.2 var(--sub); letter-spacing: .03em; text-transform: uppercase; margin: 10px 0 6px; }
+.devp__card p { color: var(--muted); font-size: 14px; }
+.devp__case { background: var(--bg-2); border-block: 1px solid var(--line); }
+.devp__case-inner { display: grid; gap: 24px; }
+.devp__list { list-style: none; display: grid; gap: 10px; }
+.devp__list li { position: relative; padding: 12px 14px 12px 44px; background: var(--bg-3); border-radius: 10px; font-weight: 500; }
+.devp__list li::before { content: "✓"; position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; display: grid; place-items: center; border-radius: 50%; background: var(--red); font-size: 12px; font-weight: 700; }
+.devp__steps { max-width: 760px; }
+.devp__final { padding: 70px 0 90px; text-align: center; background: linear-gradient(180deg, transparent, rgba(225,6,0,.12)); }
+.devp__final p { color: #c9c9c9; margin: -10px auto 26px; max-width: 520px; }
+.devp__final .devp__cta { justify-content: center; }
 
 /* ---------- 10. Suzuvchi tugmalar (mobil) ---------- */
 .fab { position: fixed; right: 16px; bottom: 16px; z-index: 40; display: flex; flex-direction: column; gap: 12px; }
@@ -396,6 +443,7 @@ button { cursor: pointer; background: none; border: 0; }
   .hero__cta { flex-direction: row; }
   .adv__grid { grid-template-columns: repeat(4, 1fr); }
   .mgrid { grid-template-columns: repeat(3, 1fr); gap: 40px 22px; }
+  .devp__grid { grid-template-columns: 1fr 1fr; }
   .types__grid { gap: 20px; }
   .sold-card { flex-basis: 46%; }
   .videos__grid { grid-template-columns: repeat(2, 1fr); }
@@ -436,6 +484,9 @@ button { cursor: pointer; background: none; border: 0; }
 
 
   .types__grid { grid-template-columns: repeat(4, 1fr); }
+  .devp__grid { grid-template-columns: repeat(4, 1fr); }
+  .devp__case-inner { grid-template-columns: 1fr 1fr; align-items: center; gap: 60px; }
+  .devp__hero { padding: 170px 0 90px; }
   .tabs { top: 76px; }
   .tabs__inner { gap: 64px; }
   .banner { min-height: 420px; padding-bottom: 56px; }
@@ -453,6 +504,7 @@ button { cursor: pointer; background: none; border: 0; }
 
   .footer { padding-bottom: 28px; }
   .footer__inner { flex-direction: row; justify-content: space-between; align-items: center; }
+  .dev__card { left: auto; right: 0; }
   .fab { display: none; }
 
   .detail { padding-top: 110px; }

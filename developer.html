@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sayt yaratuvchisi — TIGER Automotocentre</title>
+  <meta name="description" content="TIGER Automotocentre saytini yaratgan dasturchi: biznes saytlari, katalog va admin panel, telefonga moslashgan dizayn.">
+  <meta name="theme-color" content="#0A0A0A">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-dev">
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="index.html" class="logo" aria-label="TIGER Automotocentre">
+      <span class="logo__mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40"><path d="M4 8 20 2l16 6-3 18-13 12L7 26z" fill="#1E5BFF"/><path d="M11 12h18l-2 5h-5l-3 14-5-4 2-10h-6z" fill="#fff"/><path d="M8 9l6 6M32 9l-6 6" stroke="#E10600" stroke-width="2.5"/></svg>
+      </span>
+      <span class="logo__text">TIGER<small>AUTOMOTOCENTRE</small></span>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="category.html" data-i18n="nav.motos">Mototsikllar</a>
+      <a href="index.html#tradein" data-i18n="nav.tradein">Trade-in</a>
+      <a href="index.html#sell" data-i18n="nav.sell">Sotib berish</a>
+      <a href="index.html#about" data-i18n="nav.about">Biz haqimizda</a>
+      <a href="index.html#contacts" data-i18n="nav.contacts">Aloqa</a>
+    </nav>
+    <div class="header__right">
+      <div class="lang" role="group" aria-label="Til">
+        <button data-lang="uz" class="active">UZ</button><button data-lang="ru">RU</button>
+      </div>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main class="devp" id="devPage">
+  <!-- 1. Kirish -->
+  <section class="devp__hero">
+    <div class="container">
+      <p class="kicker" data-i18n="dev.page">Sayt yaratuvchisi</p>
+      <h1 class="devp__title" data-i18n-html="devp.title">Biznesingiz uchun <em>sayt yaratib beraman</em></h1>
+      <p class="devp__lead" data-i18n="devp.lead"></p>
+      <div class="devp__cta">
+        <a class="btn btn--red js-dev-tg" href="#" target="_blank" rel="noopener"><svg class="ico"><use href="#i-tg"/></svg><span data-i18n="dev.tg">Telegramda yozish</span></a>
+        <a class="btn btn--outline js-dev-url" href="#" target="_blank" rel="noopener"><span class="js-dev-url-text">targetbot.uz</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Xizmatlar -->
+  <section class="section section--tight">
+    <div class="container">
+      <h2 class="section__title" data-i18n="devp.services">Nimalar qilaman</h2>
+      <div class="devp__grid">
+        <div class="devp__card reveal"><span class="devp__num">01</span><b data-i18n="devp.s1.t"></b><p data-i18n="devp.s1.d"></p></div>
+        <div class="devp__card reveal"><span class="devp__num">02</span><b data-i18n="devp.s2.t"></b><p data-i18n="devp.s2.d"></p></div>
+        <div class="devp__card reveal"><span class="devp__num">03</span><b data-i18n="devp.s3.t"></b><p data-i18n="devp.s3.d"></p></div>
+        <div class="devp__card reveal"><span class="devp__num">04</span><b data-i18n="devp.s4.t"></b><p data-i18n="devp.s4.d"></p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Namuna: shu sayt -->
+  <section class="section section--tight devp__case">
+    <div class="container devp__case-inner">
+      <div class="reveal">
+        <p class="kicker" data-i18n="devp.case.kicker">Namuna</p>
+        <h2 class="section__title" data-i18n="devp.case.title">Bu saytda nimalar bor</h2>
+        <a href="index.html" class="link-arrow" data-i18n="devp.case.link">Saytni ko'rish →</a>
+      </div>
+      <ul class="devp__list reveal">
+        <li data-i18n="devp.f1"></li>
+        <li data-i18n="devp.f2"></li>
+        <li data-i18n="devp.f3"></li>
+        <li data-i18n="devp.f4"></li>
+        <li data-i18n="devp.f5"></li>
+        <li data-i18n="devp.f6"></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4. Ish tartibi -->
+  <section class="section section--tight">
+    <div class="container">
+      <h2 class="section__title" data-i18n="devp.steps">Qanday ishlaymiz</h2>
+      <ol class="steps devp__steps">
+        <li class="step reveal"><b data-i18n="devp.p1.t"></b><span data-i18n="devp.p1.d"></span></li>
+        <li class="step reveal"><b data-i18n="devp.p2.t"></b><span data-i18n="devp.p2.d"></span></li>
+        <li class="step reveal"><b data-i18n="devp.p3.t"></b><span data-i18n="devp.p3.d"></span></li>
+        <li class="step reveal"><b data-i18n="devp.p4.t"></b><span data-i18n="devp.p4.d"></span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 5. Yakuniy chaqiriq -->
+  <section class="devp__final">
+    <div class="container">
+      <h2 class="section__title" data-i18n="devp.final">Saytingizni bugun boshlaymiz</h2>
+      <p data-i18n="devp.final.d"></p>
+      <div class="devp__cta">
+        <a class="btn btn--red js-dev-tg" href="#" target="_blank" rel="noopener"><svg class="ico"><use href="#i-tg"/></svg><span class="js-dev-tg-text">@pila2837</span></a>
+        <a class="btn btn--outline js-dev-phone" href="#" hidden><svg class="ico"><use href="#i-phone"/></svg><span class="js-dev-phone-text"></span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <span class="logo__text">TIGER<small>AUTOMOTOCENTRE</small></span>
+    <p>© <span id="year"></span> TIGER Automotocentre. <span data-i18n="footer.rights">Barcha huquqlar himoyalangan.</span></p>
+    <div class="dev" id="devCredit"></div>
+  </div>
+</footer>
+
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-tg" viewBox="0 0 24 24"><path fill="currentColor" d="M21.4 3.6 2.9 10.8c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.5c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.3-.5-1.9-1.4-1.5zM9 13.5l9.4-5.9c.5-.3.9-.1.5.2l-8 7.3-.3 3.3z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></g></symbol>
+</svg>
+
+<script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
