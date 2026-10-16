@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Shaxsiy sahifa: menyuda yo'q, qidiruv tizimlarida chiqmaydi -->
+  <meta name="robots" content="noindex, nofollow, noimageindex">
+  <title>Oilam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 48px 16px; color: #fff; font: 400 15px/1.6 "Inter", system-ui, sans-serif;
+      background: radial-gradient(60% 50% at 50% 0%, rgba(225,6,0,.18), transparent 70%), #0A0A0A;
+    }
+    h1 { font: 400 clamp(48px, 12vw, 84px)/1 "Bebas Neue", sans-serif; font-style: italic; letter-spacing: .03em; margin-bottom: 8px; }
+    .line { width: 90px; height: 4px; background: #E10600; box-shadow: 0 0 18px rgba(225,6,0,.6); margin-bottom: 40px; }
+    .family { display: grid; gap: 28px; width: 100%; max-width: 760px; }
+    .person { text-align: center; }
+    .photo { position: relative; overflow: hidden; margin: 0 auto 14px; background: #151515; box-shadow: 0 20px 50px rgba(0,0,0,.6); }
+    .photo img { display: block; }
+    /* 1-rasm: dumaloq kadr ichidagi qism kesib olinadi */
+    .photo--round { width: min(260px, 70vw); aspect-ratio: 1; border-radius: 50%; border: 3px solid #E10600; }
+    .photo--round img { position: absolute; width: 157%; left: -43.2%; top: -50%; }
+    /* 2-rasm: telefon ekranidagi status qatori va tugmalar ko'rinmaydi */
+    .photo--card { width: 100%; max-width: 360px; aspect-ratio: 1213 / 770; border-radius: 16px; border: 3px solid #1E5BFF; }
+    .photo--card img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 34%; }
+    .person b { font: 400 34px/1 "Bebas Neue", sans-serif; letter-spacing: .04em; }
+    .back { margin-top: 44px; color: #9a9a9a; font-size: 14px; text-decoration: none; border-bottom: 1px dashed #444; }
+    .back:hover { color: #fff; }
+    @media (min-width: 680px) { .family { grid-template-columns: 1fr 1fr; align-items: center; } }
+  </style>
+</head>
+<body>
+  <h1>Oilam</h1>
+  <span class="line"></span>
+
+  <div class="family">
+    <figure class="person">
+      <div class="photo photo--round"><img src="img/family/onam.png" alt="Onam"></div>
+      <b>Onam</b>
+    </figure>
+    <figure class="person">
+      <div class="photo photo--card"><img src="img/family/singlim.webp" alt="Singlim"></div>
+      <b>Singlim</b>
+    </figure>
+  </div>
+
+  <a class="back" href="index.html">← Bosh sahifaga qaytish</a>
+</body>
+</html>
