@@ -361,7 +361,7 @@ document.addEventListener("click", e => {
     case "add-bike":
       db.BIKES.unshift({
         id: "", brand: "", model: "", year: new Date().getFullYear(), cc: 0, hp: 0, mileage: 0, price: 0,
-        type: (db.TYPES[0] && db.TYPES[0].id) || "sport", status: "sale", origin: "KR", docsClean: true,
+        type: (db.TYPES[0] && db.TYPES[0].id) || "sport", status: "sale", origin: "AE", docsClean: true,
         color: "#E10600", photos: [], video: "", desc: { uz: "", ru: "" }
       });
       setDirty(); renderBikes(); openBike(0);

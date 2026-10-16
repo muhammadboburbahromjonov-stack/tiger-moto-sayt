@@ -13,6 +13,13 @@ if (!I18N[lang]) lang = "uz";
 
 const t = key => (I18N[lang] && I18N[lang][key]) || I18N.uz[key] || key;
 const loc = obj => (obj && (obj[lang] || obj.uz)) || "";
+/* Son bilan kelishadigan so'z: ruscha "мотоцикл|мотоцикла|мотоциклов" */
+function tn(key, n) {
+  const forms = t(key).split("|");
+  if (forms.length < 3) return forms[0];
+  const a = Math.abs(n) % 100, b = a % 10;
+  return forms[a > 10 && a < 20 ? 2 : b === 1 ? 0 : b >= 2 && b <= 4 ? 1 : 2];
+}
 
 /* ---------- Yordamchi funksiyalar ---------- */
 const num = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
@@ -184,7 +191,7 @@ function initHome() {
         <div class="type-tile__art">${tp.banner ? `<img src="${esc(tp.banner)}" alt="" loading="lazy">` : bikeArt(tp.color)}</div>
         <div class="type-tile__body">
           <h3>${esc(loc(tp.title))}</h3>
-          <span>${count} ${t("types.count")}</span>
+          <span>${count} ${tn("types.count", count)}</span>
         </div>
         <span class="type-tile__arrow">→</span>
       </a>`;
@@ -220,7 +227,9 @@ function initHome() {
 
   /* --- Sotilganlar karuseli --- */
   function renderSold() {
-    $("#soldTrack").innerHTML = SOLD.map(s => `
+    const list = SOLD.filter(s => s.bike && loc(s.text));
+    $("#sold").hidden = !list.length;
+    $("#soldTrack").innerHTML = list.map(s => `
       <figure class="sold-card">
         <div class="sold-card__media" style="--c:${s.color}">
           ${s.photo ? `<img src="${esc(s.photo)}" alt="${esc(s.bike)}" loading="lazy">` : bikeArt(s.color)}
@@ -260,7 +269,9 @@ function initHome() {
 
   /* --- Videolar (bosilganda yuklanadi — sahifa tez ochiladi) --- */
   function renderVideos() {
-    $("#videoGrid").innerHTML = VIDEOS.map((v, i) => `
+    const list = VIDEOS.filter(v => v.youtube);
+    $("#videos").hidden = !list.length;
+    $("#videoGrid").innerHTML = list.map((v, i) => `
       <div class="video reveal" data-yt="${esc(v.youtube)}">
         ${v.youtube
           ? `<img src="https://i.ytimg.com/vi/${esc(v.youtube)}/hqdefault.jpg" alt="" loading="lazy">`

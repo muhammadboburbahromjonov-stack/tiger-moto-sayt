@@ -1,10 +1,10 @@
 /* =====================================================================
-   TIGER Automotocentre — SAYT MA'LUMOTLARI
+   TIGER Automotocentre — SAYT MA’LUMOTLARI
    ---------------------------------------------------------------------
    Bu fayl admin panel orqali saqlanadi:
      python admin.py  →  http://localhost:8000/admin/
-   Qo'lda ham tahrirlash mumkin, faqat JSON formatini buzmang.
-   Har saqlashda eski nusxa backups/ papkasiga ko'chiriladi.
+   Qo‘lda ham tahrirlash mumkin, faqat JSON formatini buzmang.
+   Har saqlashda eski nusxa backups/ papkasiga ko‘chiriladi.
    ===================================================================== */
 
 const SITE = {
@@ -70,7 +70,7 @@ const TYPES = [
       "ru": "Нейкед"
     },
     "desc": {
-      "uz": "Naked — shahar uchun ideal: qulay o'tirish, yengil boshqaruv va har kuni haydash uchun yetarli quvvat.",
+      "uz": "Naked — shahar uchun ideal: qulay o‘tirish, yengil boshqaruv va har kuni haydash uchun yetarli quvvat.",
       "ru": "Нейкеды — идеальны для города: удобная посадка, лёгкое управление и мощность для ежедневной езды."
     }
   },
@@ -83,7 +83,7 @@ const TYPES = [
       "ru": "Круизер"
     },
     "desc": {
-      "uz": "Kruizerlar — shoshilmasdan, uslub bilan sayr qilish uchun. Past o'rindiq, katta moment va klassik ko'rinish.",
+      "uz": "Kruizerlar — shoshilmasdan, uslub bilan sayr qilish uchun. Past o‘rindiq, katta moment va klassik ko‘rinish.",
       "ru": "Круизеры — для неспешных поездок со стилем. Низкая посадка, большой крутящий момент и классический вид."
     }
   },
@@ -96,7 +96,7 @@ const TYPES = [
       "ru": "Туринг"
     },
     "desc": {
-      "uz": "Turing mototsikllar — uzoq safarlar uchun. Qulaylik, kofrlar va har qanday yo'lga tayyor.",
+      "uz": "Turing mototsikllar — uzoq safarlar uchun. Qulaylik, kofrlar va har qanday yo‘lga tayyor.",
       "ru": "Туристические мотоциклы — для дальних поездок. Комфорт, кофры и готовность к любой дороге."
     }
   }
@@ -141,7 +141,7 @@ const BIKES = [
     "photos": [],
     "video": "",
     "desc": {
-      "uz": "BAAdan keltirilgan, garaj saqlovida bo'lgan.",
+      "uz": "BAAdan keltirilgan, garaj saqlovida bo‘lgan.",
       "ru": "Привезён из ОАЭ, гаражное хранение."
     }
   },
@@ -183,7 +183,7 @@ const BIKES = [
     "photos": [],
     "video": "",
     "desc": {
-      "uz": "Kofrlar to'plami, isitiladigan tutqichlar.",
+      "uz": "Kofrlar to‘plami, isitiladigan tutqichlar.",
       "ru": "Комплект кофров, подогрев ручек."
     }
   },
@@ -246,7 +246,7 @@ const BIKES = [
     "photos": [],
     "video": "",
     "desc": {
-      "uz": "Deyarli yangi, kafolat qoldig'i bilan.",
+      "uz": "Deyarli yangi, kafolat qoldig‘i bilan.",
       "ru": "Почти новый, с остатком гарантии."
     }
   },
@@ -288,7 +288,7 @@ const BIKES = [
     "photos": [],
     "video": "",
     "desc": {
-      "uz": "Boshlang'ich turist uchun zo'r tanlov.",
+      "uz": "Boshlang‘ich turist uchun zo‘r tanlov.",
       "ru": "Отличный выбор для начинающего туриста."
     }
   },
@@ -357,58 +357,7 @@ const BIKES = [
   }
 ];
 
-const SOLD = [
-  {
-    "bike": "Kawasaki Z900",
-    "owner": "Mijoz ismi",
-    "photo": "",
-    "color": "#2f9e2f",
-    "text": {
-      "uz": "Namuna fikr — haqiqiy mijoz fikri bilan almashtiring.",
-      "ru": "Пример отзыва — замените реальным отзывом клиента."
-    }
-  },
-  {
-    "bike": "Kawasaki Ninja ZX-6R",
-    "owner": "Mijoz ismi",
-    "photo": "",
-    "color": "#2f9e2f",
-    "text": {
-      "uz": "Namuna fikr — haqiqiy mijoz fikri bilan almashtiring.",
-      "ru": "Пример отзыва — замените реальным отзывом клиента."
-    }
-  },
-  {
-    "bike": "Honda CBR600RR",
-    "owner": "Mijoz ismi",
-    "photo": "",
-    "color": "#b30000",
-    "text": {
-      "uz": "Namuna fikr — haqiqiy mijoz fikri bilan almashtiring.",
-      "ru": "Пример отзыва — замените реальным отзывом клиента."
-    }
-  },
-  {
-    "bike": "BMW S1000RR",
-    "owner": "Mijoz ismi",
-    "photo": "",
-    "color": "#1E5BFF",
-    "text": {
-      "uz": "Namuna fikr — haqiqiy mijoz fikri bilan almashtiring.",
-      "ru": "Пример отзыва — замените реальным отзывом клиента."
-    }
-  },
-  {
-    "bike": "Harley-Davidson Iron 883",
-    "owner": "Mijoz ismi",
-    "photo": "",
-    "color": "#3a3a3a",
-    "text": {
-      "uz": "Namuna fikr — haqiqiy mijoz fikri bilan almashtiring.",
-      "ru": "Пример отзыва — замените реальным отзывом клиента."
-    }
-  }
-];
+const SOLD = [];
 
 const VIDEOS = [
   {
