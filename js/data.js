@@ -74,7 +74,8 @@ const TYPES = [
     "desc": {
       "uz": "Sport mototsikllar — tezlik va adrenalin ixlosmandlari uchun. Aerodinamik korpus, kuchli dvigatel va aniq boshqaruv.",
       "ru": "Спортбайки — для любителей скорости и адреналина. Аэродинамичный корпус, мощный двигатель и точная управляемость."
-    }
+    },
+    "tile": "img/site/tile-sport.webp"
   },
   {
     "id": "naked",
@@ -87,7 +88,8 @@ const TYPES = [
     "desc": {
       "uz": "Naked — shahar uchun ideal: qulay o‘tirish, yengil boshqaruv va har kuni haydash uchun yetarli quvvat.",
       "ru": "Нейкеды — идеальны для города: удобная посадка, лёгкое управление и мощность для ежедневной езды."
-    }
+    },
+    "tile": ""
   },
   {
     "id": "cruiser",
@@ -100,7 +102,8 @@ const TYPES = [
     "desc": {
       "uz": "Kruizerlar — shoshilmasdan, uslub bilan sayr qilish uchun. Past o‘rindiq, katta moment va klassik ko‘rinish.",
       "ru": "Круизеры — для неспешных поездок со стилем. Низкая посадка, большой крутящий момент и классический вид."
-    }
+    },
+    "tile": "img/site/tile-cruiser.webp"
   },
   {
     "id": "touring",
@@ -113,7 +116,8 @@ const TYPES = [
     "desc": {
       "uz": "Turing mototsikllar — uzoq safarlar uchun. Qulaylik, kofrlar va har qanday yo‘lga tayyor.",
       "ru": "Туристические мотоциклы — для дальних поездок. Комфорт, кофры и готовность к любой дороге."
-    }
+    },
+    "tile": ""
   }
 ];
 
