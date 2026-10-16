@@ -7,13 +7,15 @@ Admin panel:      http://localhost:8000/admin/
 Server faqat shu kompyuterda ishlaydi (127.0.0.1). U:
   * saytni ko'rsatadi,
   * admin paneldagi o'zgarishlarni js/data.js ga yozadi (eski nusxa backups/ ga),
-  * yuklangan rasmlarni img/ papkasiga saqlaydi.
+  * yuklangan rasmlarni img/ papkasiga saqlaydi,
+  * "Saqlash" bosilganda o'zgarishlarni GitHub'ga yuklaydi (sayt 1–2 daqiqada yangilanadi).
 Qo'shimcha kutubxona kerak emas — faqat Python 3.
 """
 import json
 import os
 import re
 import shutil
+import subprocess
 import sys
 import time
 import webbrowser
@@ -41,6 +43,30 @@ HEADER = """/* =================================================================
    Har saqlashda eski nusxa backups/ papkasiga ko'chiriladi.
    ===================================================================== */
 """
+
+
+def git(*args):
+    return subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True, timeout=90)
+
+
+def publish():
+    """Saqlangan ma'lumotlar va rasmlarni GitHub'ga yuklaydi — Vercel saytni o'zi yangilaydi.
+    Faqat js/data.js va img/ papkasi commit qilinadi."""
+    try:
+        if git("rev-parse", "--is-inside-work-tree").returncode != 0:
+            return False, "Git repozitoriya topilmadi — o'zgarishlar faqat kompyuterda saqlandi"
+        git("add", "js/data.js", "img")
+        if git("diff", "--cached", "--quiet").returncode == 0:
+            return True, "O'zgarish yo'q"
+        r = git("commit", "-m", "Admin panel (kompyuter): ma'lumotlar yangilandi")
+        if r.returncode != 0:
+            return False, "Commit qilib bo'lmadi: " + (r.stderr or r.stdout).strip()[:200]
+        r = git("push", "origin", "HEAD")
+        if r.returncode != 0:
+            return False, "GitHub'ga yuklab bo'lmadi (internetni tekshiring): " + r.stderr.strip()[:200]
+        return True, "Saytga yuborildi"
+    except (OSError, subprocess.TimeoutExpired) as e:
+        return False, f"Saytga yuborib bo'lmadi: {e}"
 
 
 def write_data(data):
@@ -149,7 +175,8 @@ class Handler(SimpleHTTPRequestHandler):
                     data = data["data"]
                 validate(data)
                 write_data(data)
-                return self.send_json(200, {"ok": True})
+                published, message = publish()
+                return self.send_json(200, {"ok": True, "published": published, "message": message})
 
             if url.path == "/api/upload":
                 q = parse_qs(url.query)

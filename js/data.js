@@ -89,7 +89,7 @@ const TYPES = [
       "uz": "Naked — shahar uchun ideal: qulay o‘tirish, yengil boshqaruv va har kuni haydash uchun yetarli quvvat.",
       "ru": "Нейкеды — идеальны для города: удобная посадка, лёгкое управление и мощность для ежедневной езды."
     },
-    "tile": ""
+    "tile": "img/types/520a7674-86228116.webp"
   },
   {
     "id": "cruiser",

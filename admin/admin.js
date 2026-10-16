@@ -571,7 +571,8 @@ async function save() {
     db.TYPES.forEach(tp => delete tp._new);
     setDirty(false);
     renderAll();
-    toast(isLocal ? "Saqlandi ✓ Saytni yangilang (F5)" : "Saqlandi ✓ Sayt 1–2 daqiqada yangilanadi", "ok", 5000);
+    if (isLocal && j.published === false) toast(`Kompyuterda saqlandi, lekin saytga yuborilmadi: ${j.message}`, "error", 9000);
+    else toast("Saqlandi ✓ Sayt 1–2 daqiqada yangilanadi", "ok", 6000);
   } catch (err) {
     $("#saveBtn").disabled = false;
     toast(`Saqlanmadi: ${err.message || err}`, "error", 7000);
