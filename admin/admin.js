@@ -1,6 +1,7 @@
 /* =====================================================================
    TIGER Automotocentre — admin panel
-   Ma'lumotlar ../js/data.js dan o'qiladi va admin.py orqali saqlanadi.
+   Kompyuterda: admin.py (parolsiz, fayllarga yozadi).
+   Internetda: Vercel Functions (/api/*) — parol bilan, GitHub'ga commit qiladi.
    ===================================================================== */
 
 const $ = (s, r = document) => r.querySelector(s);
@@ -10,10 +11,14 @@ const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": 
 const num = n => String(n ?? 0).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 const slug = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "moto";
 // Saytdagi yo'l (img/...) admin papkasidan "../img/..." bo'ladi
-const src = p => (p && !/^(https?:|data:|blob:)/.test(p) ? "../" + p : p);
+const previews = {};  // "img/bikes/x.webp" → blob: URL (saqlangunga qadar ko'rsatish uchun)
+const src = p => previews[p] || (p && !/^(https?:|data:|blob:)/.test(p) ? "../" + p : p);
+let pendingFiles = [];  // internetda: yuklangan, lekin hali commit qilinmagan rasmlar
+let baseSha = null;     // GitHub'dagi data.js versiyasi (boshqa joyda o'zgarganini aniqlash uchun)
+let isLocal = true;
 
 /* Tahrirlanadigan nusxa: "Saqlash" bosilmaguncha sayt o'zgarmaydi */
-const db = {
+let db = {
   SITE: clone(SITE), BRANDS: clone(BRANDS), TYPES: clone(TYPES),
   BIKES: clone(BIKES), SOLD: clone(SOLD), VIDEOS: clone(VIDEOS)
 };
@@ -454,13 +459,19 @@ async function upload(file, dir) {
   toast(`Yuklanmoqda: ${file.name}…`, "ok", 0);
   try {
     const { blob, name } = await shrink(file);
-    const r = await fetch(`/api/upload?dir=${dir}&name=${encodeURIComponent(name)}`, { method: "POST", body: blob });
+    if (!isLocal && blob.size > 4 * 1024 * 1024) throw new Error("fayl juda katta (internetda 4 MB gacha)");
+    const r = await fetch(`/api/upload?dir=${dir}&name=${encodeURIComponent(name)}`, {
+      method: "POST", headers: { "Content-Type": "application/octet-stream" }, body: blob
+    });
     const j = await r.json().catch(() => ({}));
+    if (r.status === 401) { showLogin(); throw new Error("qaytadan kiring"); }
     if (!r.ok) throw new Error(j.error || r.status);
+    previews[j.path] = URL.createObjectURL(blob);
+    if (j.blob) pendingFiles.push({ path: j.path, blob: j.blob });
     toast("Yuklandi ✓");
     return j.path;
   } catch (err) {
-    toast(`Yuklab bo'lmadi: ${err.message || err}. admin.py ishlayaptimi?`, "error", 5000);
+    toast(`Yuklab bo'lmadi: ${err.message || err}`, "error", 5000);
     return null;
   }
 }
@@ -547,19 +558,23 @@ async function save() {
     return;
   }
   // "_new" kabi ichki belgilar faylga yozilmaydi
-  const body = JSON.stringify(db, (k, v) => (k.startsWith("_") ? undefined : v));
+  const body = JSON.stringify({ data: db, files: pendingFiles, baseSha }, (k, v) => (k.startsWith("_") ? undefined : v));
   $("#saveBtn").disabled = true;
+  toast("Saqlanmoqda…", "ok", 0);
   try {
     const r = await fetch("/api/save", { method: "POST", headers: { "Content-Type": "application/json" }, body });
     const j = await r.json().catch(() => ({}));
+    if (r.status === 401) { showLogin(); throw new Error("sessiya tugagan, qaytadan kiring"); }
     if (!r.ok) throw new Error(j.error || r.status);
+    if (j.dataSha) baseSha = j.dataSha;
+    pendingFiles = [];
     db.TYPES.forEach(tp => delete tp._new);
     setDirty(false);
     renderAll();
-    toast("Saqlandi ✓ Saytni yangilang (F5)");
+    toast(isLocal ? "Saqlandi ✓ Saytni yangilang (F5)" : "Saqlandi ✓ Sayt 1–2 daqiqada yangilanadi", "ok", 5000);
   } catch (err) {
     $("#saveBtn").disabled = false;
-    toast(`Saqlanmadi: ${err.message || err}. admin.py ishlayaptimi?`, "error", 6000);
+    toast(`Saqlanmadi: ${err.message || err}`, "error", 7000);
   }
 }
 $("#saveBtn").addEventListener("click", save);
@@ -578,7 +593,56 @@ $("#tabs").addEventListener("click", e => { const b = e.target.closest("[data-ta
 $("#bikeSearch").addEventListener("input", e => { bikeQuery = e.target.value.trim().toLowerCase(); renderBikes(); });
 $("#bikeFilter").addEventListener("change", e => { bikeStatus = e.target.value; renderBikes(); });
 
+/* ---------- Kirish (internetda) ---------- */
+function showLogin(msg = "") {
+  $("#login").hidden = false;
+  $("#loginErr").textContent = msg;
+  setTimeout(() => $("#loginPass").focus(), 50);
+}
+$("#loginForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const btn = $("#loginForm button");
+  btn.disabled = true;
+  $("#loginErr").textContent = "";
+  try {
+    const r = await fetch("/api/login", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ password: $("#loginPass").value }) });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(j.error || "Xatolik");
+    $("#loginPass").value = "";
+    $("#login").hidden = true;
+    if (!booted) boot();
+  } catch (err) {
+    $("#loginErr").textContent = err.message;
+  } finally { btn.disabled = false; }
+});
+$("#logoutBtn").addEventListener("click", async () => {
+  if (dirty && !confirm("Saqlanmagan o'zgarishlar yo'qoladi. Chiqasizmi?")) return;
+  await fetch("/api/logout", { method: "POST" }).catch(() => {});
+  dirty = false;
+  location.reload();
+});
+
 /* ---------- Ishga tushirish ---------- */
-renderAll();
-try { const t = localStorage.getItem("tiger-admin-tab"); if (t && $("#tab-" + t)) showTab(t); } catch (e) {}
-fetch("/api/ping").then(r => { if (!r.ok) throw 0; }).catch(() => { $("#serverWarn").hidden = false; });
+let booted = false;
+async function boot() {
+  try {
+    const s = await fetch("/api/session");
+    const sj = await s.json().catch(() => ({}));
+    if (s.status === 401) return showLogin();
+    if (s.status === 503) { $("#serverWarn").innerHTML = "⚠️ " + esc(sj.error); $("#serverWarn").hidden = false; }
+    isLocal = !!sj.local;
+    $("#logoutBtn").hidden = isLocal;
+    const d = await fetch("/api/data");
+    if (d.ok) {
+      const dj = await d.json();
+      db = dj.data;
+      baseSha = dj.sha;
+    }
+  } catch (e) {
+    $("#serverWarn").hidden = false;  // admin.py ishlamayapti yoki fayl to'g'ridan-to'g'ri ochilgan
+  }
+  booted = true;
+  renderAll();
+  try { const t = localStorage.getItem("tiger-admin-tab"); if (t && $("#tab-" + t)) showTab(t); } catch (e) {}
+}
+boot();

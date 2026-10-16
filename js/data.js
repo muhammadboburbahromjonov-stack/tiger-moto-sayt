@@ -1,10 +1,10 @@
 /* =====================================================================
-   TIGER Automotocentre — SAYT MA’LUMOTLARI
+   TIGER Automotocentre — SAYT MA'LUMOTLARI
    ---------------------------------------------------------------------
    Bu fayl admin panel orqali saqlanadi:
      python admin.py  →  http://localhost:8000/admin/
-   Qo‘lda ham tahrirlash mumkin, faqat JSON formatini buzmang.
-   Har saqlashda eski nusxa backups/ papkasiga ko‘chiriladi.
+   Qo'lda ham tahrirlash mumkin, faqat JSON formatini buzmang.
+   Har saqlashda eski nusxa backups/ papkasiga ko'chiriladi.
    ===================================================================== */
 
 const SITE = {

@@ -18,8 +18,21 @@
     <span id="dirtyNote" class="dirty" hidden>● Saqlanmagan o'zgarishlar</span>
     <a href="../index.html" target="_blank" rel="noopener" class="btn btn--ghost">Saytni ochish ↗</a>
     <button id="saveBtn" class="btn btn--primary" disabled title="Ctrl + S">Saqlash</button>
+    <button id="logoutBtn" class="btn btn--ghost" hidden title="Chiqish">Chiqish</button>
   </div>
 </header>
+
+<!-- Kirish oynasi (internetdagi admin panel uchun) -->
+<div class="login" id="login" hidden>
+  <form class="login__box" id="loginForm" autocomplete="on">
+    <div class="top__brand"><b>TIGER</b><span>Admin panel</span></div>
+    <label class="f"><span>Parol</span>
+      <input type="password" id="loginPass" name="password" autocomplete="current-password" required>
+    </label>
+    <p class="login__err" id="loginErr" role="alert"></p>
+    <button class="btn btn--primary" type="submit">Kirish</button>
+  </form>
+</div>
 
 <div id="serverWarn" class="warn" hidden>
   ⚠️ Admin panel server orqali ochilmagan — o'zgarishlar saqlanmaydi.

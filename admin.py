@@ -61,6 +61,18 @@ def write_data(data):
     os.replace(tmp, DATA_FILE)  # yarim yozilgan fayl qolmasligi uchun
 
 
+def read_data():
+    """data.js ichidagi ma'lumotlarni o'qiydi."""
+    src = open(DATA_FILE, encoding="utf-8").read()
+    out = {}
+    for key in KEYS:
+        marker = f"const {key} = "
+        start = src.index(marker) + len(marker)
+        end = src.find(";\n", start)
+        out[key] = json.loads(src[start:end if end >= 0 else None])
+    return out
+
+
 def validate(data):
     if not isinstance(data, dict) or any(k not in data for k in KEYS):
         raise ValueError("Ma'lumotlar to'liq emas")
@@ -101,8 +113,16 @@ class Handler(SimpleHTTPRequestHandler):
         self.wfile.write(body)
 
     def do_GET(self):
-        if urlparse(self.path).path == "/api/ping":
+        path = urlparse(self.path).path
+        if path == "/api/ping":
             return self.send_json(200, {"ok": True})
+        if path == "/api/session":  # kompyuterda parol so'ralmaydi
+            return self.send_json(200, {"ok": True, "local": True})
+        if path == "/api/data":
+            try:
+                return self.send_json(200, {"data": read_data(), "sha": None})
+            except (OSError, ValueError) as e:
+                return self.send_json(500, {"error": str(e)})
         # Zaxira nusxalar va server fayli brauzerga berilmaydi
         if self.path.startswith(("/backups", "/admin.py")):
             return self.send_json(404, {"error": "not found"})
@@ -124,6 +144,9 @@ class Handler(SimpleHTTPRequestHandler):
         try:
             if url.path == "/api/save":
                 data = json.loads(body.decode("utf-8"))
+                # Internetdagi admin bilan bir xil format: {"data": {...}, "files": [...]}
+                if isinstance(data, dict) and "data" in data and "SITE" not in data:
+                    data = data["data"]
                 validate(data)
                 write_data(data)
                 return self.send_json(200, {"ok": True})

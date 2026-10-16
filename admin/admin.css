@@ -164,3 +164,9 @@ body.no-scroll { overflow: hidden; }
   .main { padding: 14px; }
   .tabs { padding: 0 8px; }
 }
+
+/* ---------- Kirish oynasi ---------- */
+.login { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 16px; background: radial-gradient(60% 50% at 50% 0%, rgba(225,6,0,.18), transparent 70%), var(--bg); }
+.login__box { width: min(360px, 100%); display: grid; gap: 16px; padding: 28px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 30px 80px rgba(0,0,0,.6); }
+.login__box .top__brand { justify-content: center; margin-bottom: 4px; }
+.login__err { min-height: 20px; color: #ff7a72; font-size: 13px; font-weight: 600; }
