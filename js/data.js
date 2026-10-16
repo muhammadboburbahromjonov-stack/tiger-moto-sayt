@@ -26,13 +26,28 @@ const SITE = {
     "years": 5
   },
   "heroVideo": "",
-  "ownerPhoto": "",
+  "ownerPhoto": "img/site/about.webp",
   "developer": {
     "name": "TargetBot.uz",
     "telegram": "pila2837",
     "phone": "",
     "url": "https://targetbot.uz"
-  }
+  },
+  "heroImage": "img/site/hero.webp",
+  "catalogBanner": "img/site/type-all.webp",
+  "gallery": [
+    "img/site/gal-01",
+    "img/site/gal-02",
+    "img/site/gal-03",
+    "img/site/gal-04",
+    "img/site/gal-05",
+    "img/site/gal-06",
+    "img/site/gal-07",
+    "img/site/gal-08",
+    "img/site/gal-09",
+    "img/site/gal-10",
+    "img/site/gal-11"
+  ]
 };
 
 const BRANDS = [
@@ -51,7 +66,7 @@ const TYPES = [
   {
     "id": "sport",
     "color": "#E10600",
-    "banner": "",
+    "banner": "img/site/type-sport.webp",
     "title": {
       "uz": "Sport",
       "ru": "Спорт"
@@ -64,7 +79,7 @@ const TYPES = [
   {
     "id": "naked",
     "color": "#1E5BFF",
-    "banner": "",
+    "banner": "img/site/type-naked.webp",
     "title": {
       "uz": "Naked",
       "ru": "Нейкед"
@@ -77,7 +92,7 @@ const TYPES = [
   {
     "id": "cruiser",
     "color": "#8a8a8a",
-    "banner": "",
+    "banner": "img/site/type-cruiser.webp",
     "title": {
       "uz": "Kruizer",
       "ru": "Круизер"
@@ -90,7 +105,7 @@ const TYPES = [
   {
     "id": "touring",
     "color": "#0d3b8c",
-    "banner": "",
+    "banner": "img/site/type-touring.webp",
     "title": {
       "uz": "Turing",
       "ru": "Туринг"

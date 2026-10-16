@@ -189,13 +189,15 @@ function initHome() {
   const media = $("#heroMedia");
   media.innerHTML = SITE.heroVideo
     ? `<video autoplay muted loop playsinline preload="metadata" src="${esc(SITE.heroVideo)}"></video>`
+    : SITE.heroImage
+    ? `<img class="hero__photo" src="${esc(SITE.heroImage)}" alt="" fetchpriority="high" decoding="async">`
     : `<div class="hero__bike">${bikeArt("#E10600")}${bikeArt("#E10600", "bike-art--reflect")}</div>`;
 
   /* --- Mototsikl turlari --- */
   function renderTypes() {
     $("#typesGrid").innerHTML = TYPES.map(tp => {
       const count = BIKES.filter(x => x.type === tp.id && x.status !== "sold").length;
-      return `<a href="${typeUrl(tp.id)}" class="type-tile reveal" style="--c:${tp.color}">
+      return `<a href="${typeUrl(tp.id)}" class="type-tile reveal${tp.banner ? " type-tile--photo" : ""}" style="--c:${tp.color}">
         <div class="type-tile__art">${tp.banner ? `<img src="${esc(tp.banner)}" alt="" loading="lazy">` : bikeArt(tp.color)}</div>
         <div class="type-tile__body">
           <h3>${esc(loc(tp.title))}</h3>
@@ -254,6 +256,48 @@ function initHome() {
   const step = () => (track.firstElementChild ? track.firstElementChild.offsetWidth + 20 : 300);
   $("#soldPrev").addEventListener("click", () => track.scrollBy({ left: -step(), behavior: "smooth" }));
   $("#soldNext").addEventListener("click", () => track.scrollBy({ left: step(), behavior: "smooth" }));
+
+  /* --- Galereya: "-sm" ro'yxatda, "-lg" bosilganda --- */
+  const gal = SITE.gallery || [];
+  $("#gallery").hidden = !gal.length;
+  $("#galleryGrid").innerHTML = gal.map((g, i) => `
+    <button class="gallery__item reveal" type="button" data-i="${i}" aria-label="${i + 1}">
+      <img src="${esc(g)}-sm.webp" alt="TIGER Automotocentre" loading="lazy" decoding="async">
+    </button>`).join("");
+  observeReveal($("#galleryGrid"));
+
+  const box = document.createElement("div");
+  box.className = "lightbox";
+  box.hidden = true;
+  box.innerHTML = `<button class="lightbox__close" type="button" aria-label="Close">✕</button>
+    <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Prev">‹</button>
+    <img class="lightbox__img" alt="">
+    <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Next">›</button>`;
+  document.body.appendChild(box);
+  let cur = 0;
+  const show = i => {
+    cur = (i + gal.length) % gal.length;
+    $(".lightbox__img", box).src = `${gal[cur]}-lg.webp`;
+  };
+  const close = () => { box.classList.remove("open"); document.body.classList.remove("no-scroll"); setTimeout(() => { box.hidden = true; }, 300); };
+  $("#galleryGrid").addEventListener("click", e => {
+    const it = e.target.closest(".gallery__item"); if (!it) return;
+    show(+it.dataset.i);
+    box.hidden = false;
+    requestAnimationFrame(() => box.classList.add("open"));
+    document.body.classList.add("no-scroll");
+  });
+  box.addEventListener("click", e => {
+    if (e.target.closest(".lightbox__nav--prev")) show(cur - 1);
+    else if (e.target.closest(".lightbox__nav--next")) show(cur + 1);
+    else if (!e.target.closest(".lightbox__img")) close();
+  });
+  document.addEventListener("keydown", e => {
+    if (box.hidden) return;
+    if (e.key === "Escape") close();
+    if (e.key === "ArrowLeft") show(cur - 1);
+    if (e.key === "ArrowRight") show(cur + 1);
+  });
 
   /* --- Asoschi rasmi --- */
   if (SITE.ownerPhoto) $("#ownerPhoto").style.backgroundImage = `url("${SITE.ownerPhoto}")`;
@@ -391,8 +435,10 @@ function initCategory() {
     $("#catTitle").textContent = title;
     $("#catDesc").textContent = tp ? loc(tp.desc) : t("cat.allDesc");
     $("#catBanner").style.setProperty("--c", tp ? tp.color : "#E10600");
-    $("#catArt").innerHTML = tp && tp.banner
-      ? `<img src="${esc(tp.banner)}" alt="">`
+    const banner = tp ? tp.banner : SITE.catalogBanner;
+    $("#catBanner").classList.toggle("banner--photo", !!banner);
+    $("#catArt").innerHTML = banner
+      ? `<img src="${esc(banner)}" alt="" fetchpriority="high" decoding="async">`
       : bikeArt(tp ? tp.color : "#E10600");
 
     $("#catTabs").innerHTML = [{ id: "", title: { uz: t("f.all"), ru: t("f.all") } }, ...TYPES]

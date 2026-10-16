@@ -639,3 +639,71 @@ button { cursor: pointer; background: none; border: 0; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .hero__bike, .hero__glow, .fab__btn--phone, .dev__card { animation: none; }
 }
+
+/* =====================================================================
+   FOTOSURATLAR
+   ===================================================================== */
+/* Bosh sahifa: tungi fotosurat */
+.hero__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; opacity: .72; animation: heroPhotoIn 1.6s var(--ease-out) both; }
+@keyframes heroPhotoIn { from { opacity: 0; transform: scale(1.04); } }
+.hero:has(.hero__photo) .hero__speed { display: none; }
+
+/* Tur kartochkalari: rasm butun kartochkani egallaydi */
+.type-tile--photo .type-tile__art { position: absolute; inset: 0; padding: 0; aspect-ratio: auto; }
+.type-tile--photo .type-tile__art img { width: 100%; height: 100%; object-fit: cover; }
+.type-tile--photo { min-height: 220px; justify-content: flex-end; background: #0d0d0d; }
+.type-tile--photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.05) 30%, rgba(0,0,0,.85)); pointer-events: none; }
+.type-tile--photo .type-tile__body, .type-tile--photo .type-tile__arrow { position: relative; z-index: 1; }
+.type-tile--photo .type-tile__arrow { position: absolute; }
+.type-tile--photo .type-tile__body span { color: #ddd; }
+.type-tile--photo:hover .type-tile__art img { transform: scale(1.06); }
+
+/* Tur sahifasi banneri: rasm butun kenglikda */
+.banner--photo .banner__art { inset: 0; right: 0; bottom: 0; width: 100%; max-width: none; opacity: 1; }
+.banner--photo .banner__art img { animation: heroPhotoIn 1.4s var(--ease-out) both; }
+.banner--photo::after { background: linear-gradient(90deg, rgba(10,10,10,.92) 15%, rgba(10,10,10,.45) 60%, rgba(10,10,10,.25)), linear-gradient(0deg, rgba(10,10,10,.9), transparent 45%); }
+
+/* Bo'lim fonlari */
+.tradein {
+  background:
+    linear-gradient(100deg, rgba(10,10,10,.96) 35%, rgba(10,12,25,.78)),
+    url("../img/site/bg-tradein.webp") center / cover no-repeat, #0A0A0A;
+}
+.sell {
+  background:
+    linear-gradient(260deg, rgba(10,10,10,.96) 35%, rgba(20,6,6,.8)),
+    url("../img/site/bg-sell.webp") center / cover no-repeat, #0A0A0A;
+}
+
+/* Galereya */
+.gallery__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.gallery__item { position: relative; overflow: hidden; border-radius: 12px; aspect-ratio: 3 / 4; background: #111; cursor: zoom-in; }
+.gallery__item:nth-child(2) { grid-column: span 2; aspect-ratio: 3 / 2; }
+.gallery__item img { width: 100%; height: 100%; object-fit: cover; transition: transform .9s var(--ease-out), filter .5s var(--ease); filter: saturate(.9); }
+.gallery__item:hover img { transform: scale(1.05); filter: saturate(1.05); }
+.gallery__item::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); pointer-events: none; }
+
+.lightbox { position: fixed; inset: 0; z-index: 80; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(0,0,0,.92); opacity: 0; transition: opacity .3s var(--ease); }
+.lightbox.open { opacity: 1; }
+.lightbox__img { max-width: 100%; max-height: 100%; border-radius: 8px; box-shadow: 0 30px 80px rgba(0,0,0,.8); transform: scale(.97); transition: transform .4s var(--ease-out); }
+.lightbox.open .lightbox__img { transform: none; }
+.lightbox__close, .lightbox__nav { position: absolute; width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,.08); color: #fff; font-size: 24px; display: grid; place-items: center; transition: background .3s var(--ease); }
+.lightbox__close:hover, .lightbox__nav:hover { background: var(--red); }
+.lightbox__close { top: 16px; right: 16px; font-size: 18px; }
+.lightbox__nav--prev { left: 12px; }
+.lightbox__nav--next { right: 12px; }
+
+@media (min-width: 640px) {
+  .gallery__grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1024px) {
+  /* Kompyuterda: rasm o'ng tomonda, chap tomonga silliq so'nadi */
+  .hero__photo { left: auto; width: 60%; opacity: .95; object-position: 50% 40%;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 40%); mask-image: linear-gradient(90deg, transparent, #000 40%); }
+  .type-tile--photo { min-height: 300px; }
+  .gallery__grid { grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .gallery__item:nth-child(2) { grid-column: span 2; grid-row: span 1; aspect-ratio: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__photo, .banner--photo .banner__art img { animation: none; }
+}

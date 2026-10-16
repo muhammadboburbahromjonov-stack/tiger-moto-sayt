@@ -1,5 +1,7 @@
 # Admin panel zaxira nusxalari (faqat shu kompyuter uchun)
 backups/
+# Fotosessiyaning asl, katta rasmlari (saytda img/site/ dagi kichraytirilganlari ishlatiladi)
+photo/
 *.tmp
 __pycache__/
 # Ilova sozlamalari

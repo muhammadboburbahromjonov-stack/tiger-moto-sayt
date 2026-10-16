@@ -280,6 +280,8 @@ function renderSite() {
       <div class="card" data-list="SITE">
         <h3 class="group-title">Rasm va video</h3><br>
         <div class="form-grid">
+          ${imgField("Bosh sahifa fon rasmi", "heroImage", s.heroImage, "site")}
+          ${imgField("Katalog banneri (Barcha mototsikllar)", "catalogBanner", s.catalogBanner, "site")}
           ${imgField("Asoschi rasmi (Biz haqimizda)", "ownerPhoto", s.ownerPhoto, "site")}
           ${imgField("Bosh sahifa videosi (mp4, ixtiyoriy)", "heroVideo", s.heroVideo, "site", "video/mp4,video/webm")}
         </div>
