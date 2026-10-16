@@ -218,7 +218,8 @@ function renderTypes() {
         ${color("Rang", "color", tp.color)}
         <div class="span2">${pair("Nomi", "title", tp.title)}</div>
         <div class="span2">${pair("Tavsif", "desc", tp.desc, true)}</div>
-        <div class="span2">${imgField("Banner rasmi (ixtiyoriy)", "banner", tp.banner, "types")}</div>
+        ${imgField("Kartochka rasmi (bosh sahifa, mototsikl to'liq ko'rinsin)", "tile", tp.tile, "types")}
+        ${imgField("Banner rasmi (tur sahifasi tepasi, keng)", "banner", tp.banner, "types")}
       </div>
     </div>`).join("") || `<p class="empty">Turlar yo'q</p>`;
 }

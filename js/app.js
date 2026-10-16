@@ -197,8 +197,9 @@ function initHome() {
   function renderTypes() {
     $("#typesGrid").innerHTML = TYPES.map(tp => {
       const count = BIKES.filter(x => x.type === tp.id && x.status !== "sold").length;
-      return `<a href="${typeUrl(tp.id)}" class="type-tile reveal${tp.banner ? " type-tile--photo" : ""}" style="--c:${tp.color}">
-        <div class="type-tile__art">${tp.banner ? `<img src="${esc(tp.banner)}" alt="" loading="lazy">` : bikeArt(tp.color)}</div>
+      const pic = tp.tile || tp.banner;
+      return `<a href="${typeUrl(tp.id)}" class="type-tile reveal${pic ? " type-tile--photo" : ""}" style="--c:${tp.color}">
+        <div class="type-tile__art">${pic ? `<img src="${esc(pic)}" alt="${esc(loc(tp.title))}" loading="lazy" decoding="async">` : bikeArt(tp.color)}</div>
         <div class="type-tile__body">
           <h3>${esc(loc(tp.title))}</h3>
           <span>${count} ${tn("types.count", count)}</span>
