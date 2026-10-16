@@ -86,9 +86,17 @@ const byStatus = (a, b) => statusOrder[a.status] - statusOrder[b.status];
 
 /* ---------- Scroll animatsiyasi ---------- */
 const revealObs = "IntersectionObserver" in window
-  ? new IntersectionObserver(entries => entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add("is-in"); revealObs.unobserve(e.target); }
-    }), { threshold: 0.12, rootMargin: "0px 0px -40px 0px" })
+  ? new IntersectionObserver(entries => {
+      // Bir vaqtda ko'ringan elementlar ketma-ket (70ms oraliq bilan) chiqadi
+      entries.filter(e => e.isIntersecting).forEach((e, i) => {
+        const el = e.target, delay = Math.min(i, 5) * 70;
+        el.style.transitionDelay = `${delay}ms`;
+        el.classList.add("is-in");
+        revealObs.unobserve(el);
+        // Kechikish faqat paydo bo'lishda — keyin hover darhol ishlashi uchun olib tashlanadi
+        setTimeout(() => { el.style.transitionDelay = ""; }, delay + 1100);
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -6% 0px" })
   : null;
 function observeReveal(root = document) {
   $$(".reveal:not(.is-in)", root).forEach(el => revealObs ? revealObs.observe(el) : el.classList.add("is-in"));

@@ -565,3 +565,77 @@ button { cursor: pointer; background: none; border: 0; }
   .detail__grid { grid-template-columns: 7fr 5fr; gap: 48px; align-items: start; }
   .detail__info { position: sticky; top: 100px; }
 }
+
+/* =====================================================================
+   SILLIQ ANIMATSIYALAR
+   Doimiy harakat kamaytirildi, "sakrovchi" effektlar yumshoq harakatga
+   almashtirildi, telefonda aylantirishni sekinlashtiruvchi effektlar olib tashlandi.
+   ===================================================================== */
+:root {
+  --ease: cubic-bezier(.22, .61, .36, 1);
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+}
+
+/* Fon: harakatlanuvchi chiziqlar to'xtatildi, nur sekin "nafas oladi" */
+.hero__speed { animation: none; opacity: .3; }
+.hero__glow { animation: glowBreath 10s ease-in-out infinite alternate; }
+@keyframes glowBreath { from { opacity: .8; } to { opacity: 1; } }
+.hero__bike { animation: bikeInSoft 1.8s var(--ease-out) both; }
+@keyframes bikeInSoft { from { opacity: 0; transform: translateX(6%); } to { opacity: 1; transform: none; } }
+
+/* Scroll paytida paydo bo'lish — kichikroq masofa, yumshoq sekinlashish */
+.reveal { transform: translateY(16px); transition: opacity 1s var(--ease-out), transform 1s var(--ease-out); }
+
+/* O'zi yaltirab, tebranib turadigan effektlar olib tashlandi */
+.hero__cta .btn--red::before, .devp__hero .btn--red::before, .detail__actions .btn--red::before { animation: none; }
+.fab__btn--tg .ico { animation: none; }
+.social:hover .ico { animation: none; }
+.fab__btn--phone { animation: ringSoft 4s var(--ease) infinite; }
+@keyframes ringSoft {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(225,6,0,.35), 0 10px 25px rgba(0,0,0,.5); }
+  70% { box-shadow: 0 0 0 12px rgba(225,6,0,0), 0 10px 25px rgba(0,0,0,.5); }
+}
+
+/* Tugmalar: bir xil, yumshoq harakat */
+.btn { transition: transform .35s var(--ease), box-shadow .35s var(--ease), filter .35s var(--ease), background .3s var(--ease), color .3s var(--ease); }
+.btn:hover::before { transition: left .9s var(--ease); }
+.btn .ico { transition: transform .35s var(--ease); }
+.btn:hover .ico { transform: translateX(3px); }
+.btn--outline:hover .ico { transform: skewX(12deg) translateX(3px); }
+.detail__actions .btn--outline:hover .ico { transform: translateX(3px); }
+.btn:not(.btn--outline):active { transform: scale(.97); transition-duration: .15s; }
+.btn--outline:active { transform: skewX(var(--skew)) scale(.97); transition-duration: .15s; }
+.detail__actions .btn--outline:active { transform: scale(.97); }
+
+.social, .round-btn, .video__play, .chip, .link-arrow, .type-tile__arrow {
+  transition: transform .35s var(--ease), background .3s var(--ease), border-color .3s var(--ease), box-shadow .35s var(--ease), color .3s var(--ease);
+}
+.social:hover { transform: translateY(-3px); }
+.round-btn:hover { transform: scale(1.06); }
+.round-btn:active, .social:active { transform: scale(.96); }
+.video:hover .video__play { transform: scale(1.06); }
+
+/* Kartochkalar */
+.type-tile { transition: transform .5s var(--ease), border-color .5s var(--ease); }
+.type-tile:hover { transform: translateY(-4px); }
+.type-tile__art .bike-art, .type-tile__art img { transition: transform .9s var(--ease-out); }
+.mcard__img > img, .mcard__img > .art-wrap { transition: transform .9s var(--ease-out); }
+.mcard:hover .mcard__img > img, .mcard:hover .mcard__img > .art-wrap { transform: scale(1.05); }
+.mcard__line { transition: width .5s var(--ease); }
+.step { transition: border-color .4s var(--ease), transform .4s var(--ease); }
+.devp__card { transition: border-color .4s var(--ease), transform .4s var(--ease); }
+
+/* Menyu va oynalar */
+.nav { transition: transform .5s var(--ease-out); }
+.header { transition: background .4s var(--ease), box-shadow .4s var(--ease); }
+.dev__card { animation: devIn .35s var(--ease-out); }
+
+/* Telefonda aylantirish silliq bo'lishi uchun: kartochkalar ustidagi
+   "shisha" (blur) effekti oddiy to'q fon bilan almashtirildi */
+.badge, .card__origin, .about__badge { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(0,0,0,.75); }
+
+/* "Animatsiyalarni kamaytirish" yoqilgan qurilmalarda harakat bo'lmaydi */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .hero__bike, .hero__glow, .fab__btn--phone, .dev__card { animation: none; }
+}
