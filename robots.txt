@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /motoworld/
+Disallow: /admin.py
+Disallow: /admin.bat
+
+Sitemap: https://www.tigerautomotocentre.uz/sitemap.xml

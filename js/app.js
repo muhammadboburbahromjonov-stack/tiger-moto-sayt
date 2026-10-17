@@ -80,6 +80,15 @@ function card(b) {
   </a>`;
 }
 
+/* Google uchun: sahifaning asosiy manzili va tavsifi (mototsikl / tur sahifalarida) */
+const SITE_URL = "https://www.tigerautomotocentre.uz";
+function setMeta(desc, path) {
+  const d = document.querySelector('meta[name="description"]');
+  if (d && desc) d.setAttribute("content", desc);
+  const c = document.querySelector('link[rel="canonical"]');
+  if (c && path) c.setAttribute("href", `${SITE_URL}/${path}`);
+}
+
 const typeUrl = id => id ? `category.html?type=${id}` : "category.html";
 const statusOrder = { sale: 0, reserved: 1, sold: 2 };
 const byStatus = (a, b) => statusOrder[a.status] - statusOrder[b.status];
@@ -366,6 +375,7 @@ function initDetail() {
       return;
     }
     document.title = `${bikeName(b)} ${b.year} — ${price(b.price)} | TIGER Automotocentre`;
+    setMeta(`${bikeName(b)} ${b.year}, ${num(b.cc)} cc, ${num(b.mileage)} km — ${price(b.price)}. ${loc(b.desc)} Toshkent, TIGER Automotocentre.`, bikeUrl(b));
 
     const photos = b.photos && b.photos.length ? b.photos : [null];
     const specs = [
@@ -433,6 +443,7 @@ function initCategory() {
     const tp = TYPES.find(x => x.id === current);
     const title = tp ? loc(tp.title) : t("cat.all");
     document.title = `${title} — TIGER Automotocentre`;
+    setMeta(tp ? loc(tp.desc) : t("cat.allDesc"), typeUrl(current));
     $("#catTitle").textContent = title;
     $("#catDesc").textContent = tp ? loc(tp.desc) : t("cat.allDesc");
     $("#catBanner").style.setProperty("--c", tp ? tp.color : "#E10600");
