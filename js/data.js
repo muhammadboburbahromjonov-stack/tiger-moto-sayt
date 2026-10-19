@@ -139,7 +139,8 @@ const BIKES = [
     "docsClean": true,
     "color": "#1E5BFF",
     "photos": [
-      "img/bikes/520a7674-15538343.webp"
+      "img/bikes/520a7674-15538343.webp",
+      "img/bikes/520a7680-16749134.webp"
     ],
     "video": "",
     "desc": {
