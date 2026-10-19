@@ -24,7 +24,7 @@ let db = {
 };
 
 const STATUS = { sale: "Sotuvda", reserved: "Bron", sold: "Sotilgan" };
-const ORIGIN = { KR: "Janubiy Koreya", JP: "Yaponiya", AE: "BAA" };
+const ORIGIN = { KR: "Janubiy Koreya", JP: "Yaponiya", AE: "BAA", CN: "Xitoy" };
 const NUM_FIELDS = ["year", "cc", "hp", "mileage", "price"];
 
 const typeOpts = () => Object.fromEntries(db.TYPES.map(t => [t.id, (t.title && t.title.uz) || t.id]));
