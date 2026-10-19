@@ -9,16 +9,16 @@
 
 const SITE = {
   "name": "TIGER Automotocentre",
-  "phone": "+998 90 000 00 00",
-  "phoneHref": "+998900000000",
+  "phone": "+998 99 694 00 00",
+  "phoneHref": "+998996940000",
   "telegram": "tiger_automotocentre",
   "instagram": "tiger_automotocentre",
   "youtube": "https://youtube.com/",
   "address": {
-    "uz": "Toshkent sh., manzil kiritilsin",
-    "ru": "г. Ташкент, укажите адрес"
+    "uz": "Toshkent sh., Yashnobod tumani, Sabzazor ko‘chasi, 18",
+    "ru": "г. Ташкент, Яшнабадский район, ул. Сабзазар, 18"
   },
-  "mapQuery": "Tashkent",
+  "mapQuery": "41.274748,69.361133",
   "hours": "12:00 – 21:00",
   "stats": {
     "followers": 31500,
@@ -47,7 +47,9 @@ const SITE = {
     "img/site/gal-09",
     "img/site/gal-10",
     "img/site/gal-11"
-  ]
+  ],
+  "mapLink": "https://yandex.uz/maps/org/tiger/46857043811/",
+  "mapEmbed": "https://yandex.uz/map-widget/v1/?ll=69.361133%2C41.274748&z=17&oid=46857043811&ol=biz"
 };
 
 const BRANDS = [

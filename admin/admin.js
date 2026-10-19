@@ -270,6 +270,8 @@ function renderSite() {
           ${inp("Instagram username", "instagram", s.instagram, { ph: "tiger_moto", attrs: 'data-parse="user"' })}
           ${inp("YouTube kanal havolasi", "youtube", s.youtube, { ph: "https://youtube.com/@..." })}
           ${inp("Xarita uchun manzil", "mapQuery", s.mapQuery, { ph: "Toshkent, ... ko'chasi 12", hint: "Manzil yoki koordinata: 41.31,69.24" })}
+          ${inp("Yandex xarita havolasi", "mapLink", s.mapLink, { ph: "https://yandex.uz/maps/org/...", hint: "Manzil bosilganda shu sahifa ochiladi" })}
+          ${inp("Xarita vidjeti (embed)", "mapEmbed", s.mapEmbed, { ph: "https://yandex.uz/map-widget/v1/?...", hint: "Bo'sh bo'lsa Google xaritasi ishlatiladi" })}
           <div class="span2">${pair("Manzil (saytda ko'rinadi)", "address", s.address)}</div>
         </div>
       </div>

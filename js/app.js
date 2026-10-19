@@ -182,7 +182,11 @@ function applyLang() {
   $$("[data-i18n]").forEach(el => el.textContent = t(el.dataset.i18n));
   $$("[data-i18n-html]").forEach(el => el.innerHTML = t(el.dataset.i18nHtml));
   $$("[data-lang]").forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
-  $$(".js-address").forEach(el => el.textContent = loc(SITE.address));
+  $$(".js-address").forEach(el => {
+    el.innerHTML = SITE.mapLink
+      ? `<a href="${esc(SITE.mapLink)}" target="_blank" rel="noopener">${esc(loc(SITE.address))} ↗</a>`
+      : esc(loc(SITE.address));
+  });
   renderDev();
   renderers.forEach(fn => fn());
 }
@@ -350,8 +354,9 @@ function initHome() {
 
   /* --- Xarita (ko'rinishga kelganda yuklanadi) --- */
   const map = $("#map");
+  const mapSrc = SITE.mapEmbed || `https://www.google.com/maps?q=${encodeURIComponent(SITE.mapQuery)}&output=embed`;
   const loadMap = () => map.innerHTML =
-    `<iframe src="https://www.google.com/maps?q=${encodeURIComponent(SITE.mapQuery)}&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map"></iframe>`;
+    `<iframe src="${esc(mapSrc)}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen title="Map"></iframe>`;
   if ("IntersectionObserver" in window) {
     const mo = new IntersectionObserver(es => { if (es[0].isIntersecting) { loadMap(); mo.disconnect(); } }, { rootMargin: "300px" });
     mo.observe(map);
