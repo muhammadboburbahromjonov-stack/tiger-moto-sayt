@@ -459,7 +459,7 @@ async function upload(file, dir) {
   toast(`Yuklanmoqda: ${file.name}…`, "ok", 0);
   try {
     const { blob, name } = await shrink(file);
-    if (!isLocal && blob.size > 4 * 1024 * 1024) throw new Error("fayl juda katta (internetda 4 MB gacha)");
+    if (!isLocal && blob.size > 20 * 1024 * 1024) throw new Error("fayl juda katta (internetda 20 MB gacha)");
     const r = await fetch(`/api/upload?dir=${dir}&name=${encodeURIComponent(name)}`, {
       method: "POST", headers: { "Content-Type": "application/octet-stream" }, body: blob
     });
