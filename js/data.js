@@ -136,6 +136,29 @@ const BIKES = [
     "origin": "JP",
     "docsClean": true,
     "color": "#1E5BFF",
+    "photos": [
+      "img/bikes/520a7674-15538343.webp"
+    ],
+    "video": "",
+    "desc": {
+      "uz": "Ideal holatda, barcha servis ishlari bajarilgan. Original plastiklar.",
+      "ru": "Идеальное состояние, всё обслуживание выполнено. Оригинальный пластик."
+    }
+  },
+  {
+    "id": "yamaha-yzf-r1-nusxa-2019",
+    "brand": "Yamaha",
+    "model": "YZF-R1 (nusxa)",
+    "year": 2019,
+    "cc": 998,
+    "hp": 200,
+    "mileage": 12400,
+    "price": 14500,
+    "type": "sport",
+    "status": "sale",
+    "origin": "JP",
+    "docsClean": true,
+    "color": "#1E5BFF",
     "photos": [],
     "video": "",
     "desc": {
